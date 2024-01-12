@@ -22,7 +22,7 @@ export default function Header() {
     const location = useLocation();
     const navigate = useNavigate();
     const menus = [
-      { name: '환영합니다', path: '/' },
+      { name: '환영합니다', path: '/home' },
       { name: '멋쟁이사자처럼 소개', path: '/a' },
       { name: '마니또를 찾아라!', path: '/b' },
     ];
