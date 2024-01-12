@@ -37,7 +37,7 @@ export default function Component({$imgSrc, children}) {
     return (
         <BodyContainer>
             <BlackBackgroundDiv>
-                <DarkLogo $isFull={$imgSrc} src={$imgSrc || "img/likelion_logo.png"} alt="Logo" />
+                <DarkLogo $isFull={$imgSrc} src={$imgSrc || "/img/likelion_logo.png"} alt="Logo" />
             </BlackBackgroundDiv>
             <ChildrenContainer>
                 {children}
