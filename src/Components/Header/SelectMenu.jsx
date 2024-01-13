@@ -26,7 +26,7 @@ export default styled.button`
         transform: translateX(-50%);
         width: 24px; // 화살표 크기 조정 필요
         height: 12px; // 화살표 크기 조정 필요
-        background-image: url('img/arrow.png'); // 화살표 아이콘 이미지 경로
+        background-image: url('/img/arrow.png'); // 화살표 아이콘 이미지 경로
         background-size: cover;
     }
     `;

@@ -12,7 +12,6 @@ const BodyContainer = styled.div`
   gap: 50px;
 
   background-color: black;
-  color : white;
 `
 
 const DarkLogo = styled.img`

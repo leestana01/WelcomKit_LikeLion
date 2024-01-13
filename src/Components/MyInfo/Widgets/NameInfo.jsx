@@ -42,7 +42,7 @@ export default function Component(){
     return(
         <NameInfoContainer>
             <RoundDiv>
-                <RoundImg src='img/likelion_icon.png'/>
+                <RoundImg src='/img/likelion_icon.png'/>
             </RoundDiv>
             <NameContainer>
                 <StyledName>이 수 혁</StyledName>

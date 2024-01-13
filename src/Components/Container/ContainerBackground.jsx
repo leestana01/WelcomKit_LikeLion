@@ -9,7 +9,7 @@ const ChildrenContainer = styled.div`
     display: flex;
     position:absolute;
     width: calc(100% - 250px);
-    height: calc(100vh - 142.5px);
+    height: calc(100vh - 143px);
     padding: 30px;
     color: white;
 `
@@ -20,7 +20,7 @@ const BlackBackgroundDiv = styled.div`
     align-items: center;
 
     width: calc(100% - 250px);
-    height: calc(100vh - 82.5px);
+    height: calc(100vh - 83px);
     background-color: black;
     color : white;
 
@@ -29,6 +29,7 @@ const BlackBackgroundDiv = styled.div`
 
 const DarkLogo = styled.img`
     filter: brightness(0.3);
+    // margin-left: ${props => props.$isFull ? null : "70px"};
     width: ${props => props.$isFull ? "100%" : "400px"};
     height: ${props => props.$isFull ? "100%" : null};
 `;

@@ -29,7 +29,7 @@ export default function Header() {
   
     return (
       <HeaderContainer>
-        <WelcomeKit />
+        <WelcomeKit onClick={() => navigate('/main/welcomekit/boxopen')}>운영진의 마음</WelcomeKit>
         {menus.map((menu) => (
           <SelectMenu
             key={menu.name}

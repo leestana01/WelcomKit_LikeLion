@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const ButtonContainer = styled.div`
+export default styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
@@ -17,13 +17,9 @@ const ButtonContainer = styled.div`
 
     color : white;
     background : #1E2328;
-`
+    cursor: pointer;
 
-export default function Component  () {
-    
-    return (
-        <ButtonContainer>
-            웰컴 키트
-        </ButtonContainer>
-    )
-}
+    &:hover{
+        background: linear-gradient(to bottom, #1c252f, #103b50);
+    }
+`;

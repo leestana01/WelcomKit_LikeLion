@@ -1,95 +1,95 @@
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
-const StyledCard = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    gap: 30px;
-
-    background: white;
-    color: black;
-    height: 300px;
-`;
-
-const StyledCardHeader = styled.div`
+const NeumorphicForm = styled.form`
   display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  flex-direction: column;
+  padding: 40px;
+  gap: 10px;
+
+  background-color: #e0e5ec;
+  border-radius: 20px;
+  box-shadow: 8px 8px 15px #a3b1c6,
+              -8px -8px 15px #ffffff;
+  text-align: center;
 `;
 
-const StyledCardTitle = styled.h1`
-  font-size: 2rem; /* text-2xl에 해당하는 스타일 */
+const NeumorphicInput = styled.input`
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  padding: 10px;
+  width: 250px;
+  margin-bottom: 20px;
+  box-shadow: inset 6px 6px 6px #a3b1c6,
+              inset -6px -6px 6px #ffffff;
 `;
 
-const StyledCardDescription = styled.p`
-  /* CardDescription 컴포넌트 스타일 */
-`;
-
-const StyledCardContent = styled.div`
-  /* CardContent 컴포넌트 스타일 */
-  & > div {
-    margin-bottom: 1rem; /* space-y-4에 해당하는 스타일 */
+const NeumorphicButton = styled.button`
+  border: none;
+  outline: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  cursor: pointer;
+  background-color: #e0e5ec;
+  box-shadow: 6px 6px 10px #a3b1c6,
+              -6px -6px 10px #ffffff;
+  transition: 0.3s;
+  
+  &:hover {
+    box-shadow: 2px 2px 5px #a3b1c6,
+                -2px -2px 5px #ffffff;
   }
 `;
 
-const StyledLabel = styled.label`
-  /* Label 컴포넌트 스타일 */
-`;
+const WelcomeText = styled.h2`
+  font-family: 'LINE-Bd';
+  font-size: 2rem;
+  color: #156082;
+`
 
-const StyledInput = styled.input`
-  /* Input 컴포넌트 스타일 */
-`;
+const TextDescription = styled.p`
 
-const StyledButton = styled.button`
-  width: 100%; /* w-full에 해당하는 스타일 */
-`;
+`
 
-const FormSection = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    & > *:not(:last-child) {
-        margin-bottom: 0.5rem; /* space-y-2에 해당하는 스타일 */
-    }
-`;
+const NameInputForm = () => {
+  const [name, setName] = useState('');
 
-const StyledCardFooter = styled.div`
-  /* CardFooter 컴포넌트 스타일 */
-`;
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    alert(`환영합니다, ${name}님!`);
+    openFixedSizeWindow('http://localhost:3000/main', 1600, 1080);
+  };
 
-const StyledLink = styled.a`
-  color: blue;
-  cursor: pointer;
-`;
+  const openFixedSizeWindow = (url, width, height) => {
+    // 새 창을 정해진 크기로 열고, 크기 조절을 금지
+    window.open(url, '_blank', `width=${width},height=${height},resizable=no`);
+  };
 
-export default function Component() {
-    const openFixedSizeWindow = (url, width, height) => {
-        // 새 창을 정해진 크기로 열고, 크기 조절을 금지
-        window.open(url, '_blank', `width=${width},height=${height},resizable=no`);
-      };
-      
-    return (
-    <StyledCard>
-        <StyledCardHeader>
-            <StyledCardTitle>환영합니다</StyledCardTitle>
-            <StyledCardDescription>본인 확인을 위해 이름을 기재해주세요!</StyledCardDescription>
-        </StyledCardHeader>
-        <StyledCardContent>
-            <FormSection>
-                <StyledLabel htmlFor="name">이름</StyledLabel>
-                <StyledInput id="name" placeholder="본인의 이름 입력" required type="text" />
-            </FormSection>
-        </StyledCardContent>
-        <StyledCardFooter>
-            <StyledButton>입장</StyledButton>
-            <StyledLink onClick={() => openFixedSizeWindow('http://localhost:3000/main', 1600, 1080)}>
-                링크 열기
-            </StyledLink>
-        </StyledCardFooter>
-    </StyledCard>
-    );
-}
+  return (
+      <NeumorphicForm onSubmit={handleSubmit}>
+        <WelcomeText>환영합니다</WelcomeText>
+        <TextDescription>여러분을 위해 작은 선물을 준비했습니다</TextDescription>
+        <TextDescription>이름을 적고 입장한 뒤, 확인해볼까요?</TextDescription>
+        <NeumorphicInput
+          type="text"
+          placeholder="이름 입력"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+        <NeumorphicButton type="submit">입장</NeumorphicButton>
+      </NeumorphicForm>
+  );
+};
+
+export default NameInputForm;
+
+
+
+// const openFixedSizeWindow = (url, width, height) => {
+//   // 새 창을 정해진 크기로 열고, 크기 조절을 금지
+//   window.open(url, '_blank', `width=${width},height=${height},resizable=no`);
+// };
+// <StyledLink onClick={() => openFixedSizeWindow('http://localhost:3000/main', 1600, 1080)}>
+//                 링크 열기
+//             </StyledLink>
