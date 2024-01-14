@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import ContainerBackground from '../../Components/Container/ContainerBackground';
-import ContainerColumn from '../../Components/Container/ContainerColumn';
+import ContainerBackground from '../../../Components/Container/ContainerBackground';
+import ContainerColumn from '../../../Components/Container/ContainerColumn';
 
 const ContainerCenter = styled.div`
   display: flex;
@@ -20,6 +20,9 @@ const GameInfoContainer = styled(ContainerCenter)`
 `
 
 const PageContainer = styled(ContainerCenter)`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   gap: 30px;
 `
 
@@ -58,7 +61,7 @@ export default function Component() {
 
         <ContainerCenter>
           <TextH2>마니또 게임에 오신 것을 환영합니다!</TextH2>
-          <p>이번 동아리 행사에서 우리는 서로에게 익명의 선물을 주고받으며 즐거운 시간을 보낼 예정입니다.</p>
+          <p>이번 동아리 활동 동안 우리는 서로에게 익명으로 도움을 주고받으며 즐거운 시간을 보낼 예정입니다.</p>
           <p>마니또 게임을 통해 동아리원들과의 유대를 더욱 깊게 하고, 익명의 친구에게 따뜻한 마음을 전달해보세요.</p>
         </ContainerCenter>
 

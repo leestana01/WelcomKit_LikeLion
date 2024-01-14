@@ -23,7 +23,7 @@ export default function Header() {
     const navigate = useNavigate();
     const menus = [
       { name: '환영합니다', path: '/main' },
-      { name: '멋쟁이사자처럼 소개', path: '/main/a' },
+      { name: '멋쟁이사자처럼 소개', path: '/main/introduction' },
       { name: '마니또를 찾아라!', path: '/main/manitto' },
     ];
   

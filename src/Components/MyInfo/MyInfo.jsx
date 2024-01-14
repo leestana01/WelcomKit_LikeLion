@@ -1,5 +1,9 @@
 import { styled } from 'styled-components';
 import NameInfo from './Widgets/NameInfo';
+import RoadMap from './Widgets/RoadMap';
+import GuideBook from './Widgets/GuideBook';
+import LetsGame from './Widgets/LetsBingo';
+import Togather from './Widgets/Togather';
 
 const InfoContainer = styled.div`
     display: flex;
@@ -23,6 +27,10 @@ export default function Component() {
     return(
         <InfoContainer>
             <NameInfo/>
+            <Togather />
+            <RoadMap />
+            <GuideBook />
+            <LetsGame />
         </InfoContainer>
     )
 };

@@ -1,13 +1,14 @@
-import ContainerBackground from '../../Components/Container/ContainerBackground';
+import ContainerBackground from '../../../Components/Container/ContainerBackground';
 import styled from 'styled-components';
 import GridWidget from './GridWidget';
-import SizedBoxColumn from '../../Components/SizedBox/SizedBoxColumn';
+import SizedBoxColumn from '../../../Components/SizedBox/SizedBoxColumn';
 
 const LeftContainer = styled.div`
   flex: 4;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  padding-left: 50px;
 `
 const RightContainer = styled.div`
   flex : 6;

@@ -10,7 +10,6 @@ const ChildrenContainer = styled.div`
     position:absolute;
     width: calc(100% - 250px);
     height: calc(100vh - 143px);
-    padding: 30px;
     color: white;
 `
 

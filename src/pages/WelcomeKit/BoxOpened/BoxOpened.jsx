@@ -14,17 +14,6 @@ const appear = keyframes`
   }
 `;
 
-const BarLR = styled.div`
-  position: absolute;
-  background-image: url('/img/welcomekit/barLR.png');
-  background-size: cover;
-  height: calc(100vh - 143px);
-  width: calc(100% - 100px);
-  opacity: 0;
-//   transform: translate(-50%, -50%);
-  animation: ${appear} 0.4s ease forwards;
-`;
-
 const FillWidthContainer = styled.div`
   position: absolute;
   top: ${props => props.$top};
@@ -33,8 +22,15 @@ const FillWidthContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  width: calc(100% - 100px);
+  width: 100%;
 `
+
+const BarLR = styled.img`
+  width: 100%;
+  height: calc(100vh - 143px);
+  opacity: 0;
+  animation: ${appear} 0.4s ease forwards;
+`;
 
 const LetterContainer = styled.div`
   display: flex;
@@ -85,7 +81,7 @@ const ButtonDown = styled.button`
   background-size: cover;
 
   animation: ${appear} 1s ease forwards;
-  animation-delay: 2s;
+  animation-delay: 1s;
 
   &:hover {
     background-image: url('/img/welcomekit/buttonOn.png');
@@ -99,7 +95,7 @@ export default function Component() {
   const navigate = useNavigate();
 
   const handleOnClick = () => {
-    navigate('/main/welcomekit');
+    navigate('/main/welcomekit/letterhome');
   };
 
   const playSound = () => {
@@ -109,13 +105,15 @@ export default function Component() {
 
     return (
         <ContainerBackground>
-          <BarLR />
+          <FillWidthContainer>
+            <BarLR src="/img/welcomekit/barLR.png"/>
+          </FillWidthContainer>
           
           <FillWidthContainer $top="30%">
             <LetterContainer>
               <LetterImage src="/img/letter.png"/>
               <LetterDescription>운영진의 편지</LetterDescription>
-              <LetterDescription2>여러분들을 맞이하여 운영진분들이 뜻깊은 메시지를 남겨두었어요!</LetterDescription2>
+              <LetterDescription2>여러분을 맞이하여 운영진분들이 뜻깊은 메시지를 남겨두었어요!</LetterDescription2>
             </LetterContainer>
           </FillWidthContainer>
           
