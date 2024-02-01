@@ -26,6 +26,9 @@ const GradientText = styled.h1`
     background: linear-gradient(to bottom, #C8A96C, #7B5D28);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    line-height: 1.2; /* 라인 높이 조정 */
+    padding-top: 2px; /* 위쪽에 약간의 패딩 추가 */
+    display: inline-block; /* display 속성 조정 */
 `;
 
 const TitleColumn = styled.div`
