@@ -16,6 +16,12 @@ import RoadMap from "./pages/InfoPages/RoadMap/RoadMap";
 import GuideBook from "./pages/InfoPages/GuideBook/GuideBook";
 import LetsBingo from "./pages/InfoPages/LetsBingo/LetsBingo";
 
+import ManagerPage from "./pages/ManagerPage/ManagerPage";
+import ManagerHome from "./pages/ManagerPage/Contents/Home/ManagerHome";
+import Letters from "./pages/ManagerPage/Contents/Letters/Letters";
+import MyInfo from "./pages/ManagerPage/Contents/MyInfo/MyInfo";
+import MyTeam from "./pages/ManagerPage/Contents/MyTeam/MyTeam";
+
 export default createBrowserRouter([
     {
         path: "/",
@@ -77,5 +83,27 @@ export default createBrowserRouter([
             },
 
         ]
-    }
+    },
+    {
+        path: "/managerpage",
+        element: <ManagerPage />,
+        children: [
+            {
+                path: "",
+                element: <ManagerHome/>
+            },
+            {
+                path: "letters",
+                element: <Letters/>
+            },
+            {
+                path: "info",
+                element: <MyInfo/>
+            },
+            {
+                path: "team",
+                element: <MyTeam/>
+            }
+        ]
+    },
 ]);

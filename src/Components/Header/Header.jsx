@@ -25,6 +25,7 @@ export default function Header() {
       { name: '환영합니다', path: '/main' },
       { name: '멋쟁이사자처럼 소개', path: '/main/introduction' },
       { name: '마니또를 찾아라!', path: '/main/manitto' },
+      { name: '운영진 전용 페이지', path: '/managerpage' },
     ];
   
     return (
