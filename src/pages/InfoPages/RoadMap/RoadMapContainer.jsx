@@ -7,7 +7,6 @@ const Column = styled.div`
     display: flex;
     flex-direction: column;
     gap: 40px;
-    overflow-y: auto;
 `
 
 const MiniGapColumn = styled.div`
@@ -25,7 +24,6 @@ const RoadContainer = styled.div`
     background-color: #010A13;
     border: 2px solid #372C16;
     padding: 20px;
-    overflow-y: auto;
 `;
 
 const Title = styled.h1`
