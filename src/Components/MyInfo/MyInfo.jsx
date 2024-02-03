@@ -4,6 +4,7 @@ import RoadMap from './Widgets/RoadMap';
 import GuideBook from './Widgets/GuideBook';
 import LetsGame from './Widgets/LetsBingo';
 import Togather from './Widgets/Togather';
+import ManagerPage from './Widgets/ManagerPage';
 
 const InfoContainer = styled.div`
     display: flex;
@@ -31,6 +32,8 @@ export default function Component() {
             <RoadMap />
             <GuideBook />
             <LetsGame />
+
+            <ManagerPage />
         </InfoContainer>
     )
 };

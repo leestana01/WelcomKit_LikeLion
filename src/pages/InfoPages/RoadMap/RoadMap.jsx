@@ -5,12 +5,12 @@ import RoadMapContainer from './RoadMapContainer';
 import React, { useState } from 'react';
 
 const ContainerCenter = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
-  gap: 10px;
-  width: 100%;
+    gap: 10px;
+    width: 100%;
 `
 
 const PageContainer = styled(ContainerCenter)`
@@ -32,43 +32,43 @@ const GradientText = styled.h1`
 `;
 
 const TitleColumn = styled.div`
-flex: 1;
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-gap: 40px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
 `
 
 const BigColumn = styled.div`
-width: 100%;
-display: flex;
-flex-direction: column;
-gap: 150px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 150px;
 `
 
 const Line = styled.div`
-background-color: #0A141B;
-width: 90%;
-height: 1px;
+    background-color: #0A141B;
+    width: 90%;
+    height: 1px;
 `;
 
 const BigRow = styled.div`
-flex: 2;
-height: 100%;
-display: flex;
-flex-direction: row;
+    flex: 2;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
 `;
 
 const CategoryColumn = styled.div`
-flex: 1;
-width: 100%;
-height: 100%;
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-gap: 40px;
+    flex: 1;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
 `
 
 export default function Component() {

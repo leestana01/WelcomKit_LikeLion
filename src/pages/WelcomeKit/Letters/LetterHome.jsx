@@ -1,31 +1,29 @@
 import styled from 'styled-components';
 import ContainerBackground from '../../../Components/Container/ContainerBackground';
+import Letter from './Letter';
+import GridWidget from './GridWidget';
 
-const ContainerCenter = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  gap: 10px;
-  width: 100%;
-`
-
-const PageContainer = styled(ContainerCenter)`
+const PageContainer = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
+
     gap: 30px;
+    width: 100%;
 `
 
 export default function Component(){
 
     return (
-        <ContainerBackground>
-            <PageContainer>
-                <h1 style={{"font-size":"3rem", "fontFamily":"LINE-Bd"}}>
-                    여기에 편지 꾸미기
-                </h1>
-            </PageContainer>
-        </ContainerBackground>
+        <ContainerBackground><PageContainer>
+            <GridWidget>
+                <Letter />
+                <Letter />
+                <Letter />
+                <Letter />
+
+            </GridWidget>
+        </PageContainer></ContainerBackground>
     )
 }

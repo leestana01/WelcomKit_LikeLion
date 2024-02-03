@@ -20,9 +20,8 @@ const NeumorphicInput = styled.input`
   border-radius: 10px;
   padding: 10px;
   width: 250px;
-  margin-bottom: 20px;
-  box-shadow: inset 6px 6px 6px #a3b1c6,
-              inset -6px -6px 6px #ffffff;
+  box-shadow: inset 4px 4px 4px #a3b1c6,
+              inset -4px -4px 4px #ffffff;
 `;
 
 const NeumorphicButton = styled.button`
@@ -54,6 +53,7 @@ const TextDescription = styled.p`
 
 const NameInputForm = () => {
   const [name, setName] = useState('');
+  const [pw, setPW] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -76,6 +76,12 @@ const NameInputForm = () => {
           placeholder="이름 입력"
           value={name}
           onChange={(e) => setName(e.target.value)}
+        />
+        <NeumorphicInput
+          type="password"
+          placeholder="비밀번호(전화번호 뒤 4자리) 입력"
+          value={pw}
+          onChange={(e) => setPW(e.target.value)}
         />
         <NeumorphicButton type="submit">입장</NeumorphicButton>
       </NeumorphicForm>

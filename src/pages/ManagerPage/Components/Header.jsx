@@ -1,5 +1,6 @@
 import { styled } from 'styled-components';
 import ContainerRow from '../../../Components/Container/ContainerRow';
+import { useNavigate } from 'react-router';
 
 const HeaderContainer = styled.header`
     display: flex;
@@ -17,14 +18,18 @@ const TextTitle = styled.h1`
     color: #888;
 `
 
+const TextReturn = styled.p`
+    cursor: pointer;
+`
 export default function Component() {
+    const navigate = useNavigate();
     return(
         <HeaderContainer>
             <ContainerRow>
                 <TextTitle>운영진 전용 관리 페이지</TextTitle>
             </ContainerRow>
             <ContainerRow>
-                <p>로그아웃</p>
+                <TextReturn onClick={() => navigate('/main')}>돌아가기</TextReturn>
             </ContainerRow>
         </HeaderContainer>
     )

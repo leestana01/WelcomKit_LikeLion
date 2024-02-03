@@ -6,6 +6,7 @@ import FirstPage from "./pages/FirstPage/FirstPage";
 import Home from "./pages/HeaderPages/Home/Home";
 import Introduction from "./pages/HeaderPages/Introduction/Introduction";
 import Manitto from "./pages/HeaderPages/Manitto/Manitto";
+import MyPage from "./pages/HeaderPages/MyPage/MyPage";
 
 import BoxOpen from "./pages/WelcomeKit/BoxOpen/BoxOpen";
 import BoxOpened from "./pages/WelcomeKit/BoxOpened/BoxOpened";
@@ -42,6 +43,10 @@ export default createBrowserRouter([
             {
                 path: "manitto",
                 element: <Manitto/>
+            },
+            {
+                path: "mypage",
+                element: <MyPage/>
             },
             {
                 path: "welcomekit",

@@ -1,55 +1,51 @@
 import styled from 'styled-components';
-import ContainerBackground from '../../../Components/Container/ContainerBackground';
-import Basic from '../../../Components//Buttons/Basic';
-import CustomImg from '../../../Components/Container/CustomImg';
-import ContainerColumn from '../../../Components/Container/ContainerColumn';
 import ContainerRow from '../../../Components/Container/ContainerRow';
 import StyledImg from '../../../Components/Container/CustomImg';
 
 const Column = styled.div`
-flex: 1;
-display: flex;
-flex-direction: column;
-gap: 40px;
-overflow-y: auto;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    overflow-y: auto;
 `
 
 const MiniGapColumn = styled.div`
-flex: 1;
-display: flex;
-flex-direction: column;
-gap: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 `;
 
 const RoadContainer = styled.div`
-flex: 2;
-width: 100%;
-height: 100%;
-margin-right: 30px;
-background-color: #010A13;
-border: 2px solid #372C16;
-padding: 20px;
-overflow-y: auto;
+    flex: 2;
+    width: 100%;
+    height: 100%;
+    margin-right: 30px;
+    background-color: #010A13;
+    border: 2px solid #372C16;
+    padding: 20px;
+    overflow-y: auto;
 `;
 
 const Title = styled.h1`
-color: #CABB8F;
-font-weight: bold;
-font-size: 30px;
-text-align: center;
+    color: #CABB8F;
+    font-weight: bold;
+    font-size: 30px;
+    text-align: center;
 `;
 
 const Detail = styled.a`
-color: #CABB8F;
-font-weight: bold;
-font-size: 15px;
+    color: #CABB8F;
+    font-weight: bold;
+    font-size: 15px;
 `;
 
 const BoxText = styled.h1`
-color: #745727;
-font-size: 20px;
-font-weight: bold;
-text-align: left;
+    color: #745727;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: left;
 `;
 
 export default function Component({ isWho }) {
