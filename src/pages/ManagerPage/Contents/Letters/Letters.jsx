@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import getBabyLions from '../../../../APIs/get/getBabyLions';
+import createWelcomeLetter from '../../../../APIs/post/createWelcomeLetter';
 
 const UserListContainer = styled.div`
   padding: 20px;
@@ -81,23 +83,23 @@ const TextWritten = styled.p`
 
 export default function Letters() {
   const [users, setUsers] = useState([]);
-  const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState({ open: false, targetId: null });
   const [message, setMessage] = useState('');
 
   useEffect(() => {
-    setUsers([
-      { id: 1, detail: '임승민', team: '0', part:'DESIGN', messageWritten: false },
-      { id: 2, detail: '이수혁', team: '1', part:'BACK', messageWritten: false },
-      { id: 3, detail: '이나영', team: '1', part:'FRONT', messageWritten: true },
-      { id: 4, detail: '김재우', team: '2', part:'FRONT', messageWritten: false },
-      { id: 5, detail: '정재웅', team: '2', part:'BACK', messageWritten: false },
-    ]);
+    const fetchBabyLions = async () => {
+      const response = await getBabyLions();
+      setUsers(response);
+    }
+    fetchBabyLions();
   }, [])
 
-  const handleMessageSubmit = () => {
-    alert('완료');
-    setShowModal(false);
-    setMessage('');
+  const handleMessageSubmit = async () => {
+    if (showModal.targetId) {
+      await createWelcomeLetter(showModal.targetId, message);
+      alert('해당 유저에게 메시지 작성을 완료하였습니다.');
+      window.location.reload();
+    }
   };
 
   return (
@@ -105,7 +107,7 @@ export default function Letters() {
       <UserTable>
         <thead>
           <UserRow>
-            <TableHeader>상세 정보</TableHeader>
+            <TableHeader>이름</TableHeader>
             <TableHeader>팀</TableHeader>
             <TableHeader>파트</TableHeader>
             <TableHeader>편지 작성 여부</TableHeader>
@@ -115,8 +117,8 @@ export default function Letters() {
         <tbody>
           {users.map((user) => (
             <UserRow key={user.id}>
-                <UserCell>{user.detail}</UserCell>
-                <UserCell>{user.team === 0 ? '편성 전' : user.team}</UserCell>
+                <UserCell>{user.name}</UserCell>
+                <UserCell>{user.teamId === 0 ? '편성 전' : user.teamId}</UserCell>
                 <UserCell>
                     {user.part === 'FRONT' ? '프론트엔드' :
                     user.part === 'BACK' ? '백엔드' :
@@ -130,7 +132,7 @@ export default function Letters() {
                 <UserCell>
                     <Button
                         $background={user.messageWritten ? "red" : null}
-                        onClick={() => setShowModal(true)}>
+                        onClick={() => setShowModal({ open: true, targetId: user.id })}>
                             {user.messageWritten ? '수정하기' : '작성하기'}
                     </Button>
                 </UserCell>
@@ -138,10 +140,10 @@ export default function Letters() {
           ))}
         </tbody>
       </UserTable>
-      {showModal && (
+      {showModal.open && (
         <ModalBackground>
           <ModalContent>
-            <ModalCloseButton onClick={() => setShowModal(false)}>X</ModalCloseButton>
+            <ModalCloseButton onClick={() => setShowModal({ open: false, targetId: null })}>X</ModalCloseButton>
             <h4>메시지 작성</h4>
             <TextInput
               type="text"

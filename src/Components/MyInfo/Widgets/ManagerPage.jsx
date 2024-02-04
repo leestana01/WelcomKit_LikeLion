@@ -27,6 +27,7 @@ const ButtonText = styled.p`
 
 export default function ManagerPage(){
     const navigate = useNavigate();
+    
     return (
         <ManagerPageContainer onClick={() => navigate("/managerpage")}>
             <p> 운영진 전용 </p>

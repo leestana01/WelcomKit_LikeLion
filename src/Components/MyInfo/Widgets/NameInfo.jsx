@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import myInfo from '../../../APIs/get/myInfo';
+import { useEffect, useState } from 'react';
 
 const NameInfoContainer = styled.div`
     display:flex;
@@ -9,11 +11,6 @@ const NameInfoContainer = styled.div`
     height: 80px;
 `
 
-const RoundImg = styled.img`
-    width: 40px;
-    height: 35px;
-`
-
 const RoundDiv = styled.div`
     width: 40px;
     height: 40px;
@@ -21,6 +18,12 @@ const RoundDiv = styled.div`
 
     border : 3px solid orange;
     border-radius : 50%;
+
+    background-image: url(${props => props.$url});
+    background-repeat: no-repeat;
+    // background-size : contain 또는 cover
+    background-size : 100% 100%;
+    background-position : center;
 `
 
 const NameContainer = styled.div`
@@ -37,16 +40,37 @@ const NameDescription = styled.p`
 `
 
 
-export default function Component(){
+export default function NameInfo(){
+    const [name, setName] = useState();
+    const [userType, setUserType] = useState();
+    const [profileUrl, setProfileUrl] = useState();
+    // const [image, setImage] = useState();
+
+    const roleType = {
+        'ROLE_USER': '신규 아기 사자',
+        'ROLE_MANAGER': '운영진',
+        'ROLE_BOSS': '회장',
+        'ROLE_ADMIN': '관리자'
+    }
+
+    useEffect(() => {
+        const fetchMyInfo = async () => {
+            const data = await myInfo();
+            if (data) {
+                setName(data.name);
+                setUserType(data.userType);
+                setProfileUrl(data.profileMiniUrl);
+            }
+        };
+        fetchMyInfo();
+    }, []);
 
     return(
         <NameInfoContainer>
-            <RoundDiv>
-                <RoundImg src='/img/likelion_icon.png'/>
-            </RoundDiv>
+            <RoundDiv $url={ profileUrl ? `${process.env.REACT_APP_SERVER}${profileUrl}` : '/img/likelion_icon.png'} />
             <NameContainer>
-                <StyledName>이 수 혁</StyledName>
-                <NameDescription> 신규 아기 사자</NameDescription>
+                <StyledName>{name}</StyledName>
+                <NameDescription>{roleType[userType]}</NameDescription>
             </NameContainer>
 
         </NameInfoContainer>

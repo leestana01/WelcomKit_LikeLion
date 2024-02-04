@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import ContainerCard from '../../Components/ContainerCard';
 import ContainerRow from '../../../../Components/Container/ContainerRow';
+import makeUser from '../../../../APIs/post/makeUser';
 
 const Container = styled(ContainerCard)`
   display: flex;
@@ -70,7 +71,7 @@ const TextTitle = styled.h1`
 
 export default function CreateUser() {
   const [users, setUsers] = useState([
-    { name: '', password: '', department: '', part: '', team: '' },
+    { name: '', password: '', department: '', part: 'FRONT', team: 0 },
   ]);
 
   const handleChange = (index, e) => {
@@ -80,12 +81,22 @@ export default function CreateUser() {
   };
 
   const addUser = () => {
-    setUsers([...users, { name: '', password: '', department: '', part: '', team: '' }]);
+    setUsers([...users, { name: '', password: '', department: '', part: 'FRONT', team: 0 }]);
   };
 
-  const handleAddUser = () => {
-    alert('유저 생성을 완료하였습니다. (예정)')
-  };
+  const handleAddUser = async () => {
+    try {
+      await Promise.all(users.map(user => {
+        if (!user.name || !user.password) return;
+        makeUser(user.name, user.password, user.department, user.part, user.team);
+        console.log(user.name, user.password, user.department, user.part, user.team);
+      }
+      ));
+      console.log("모든 유저가 성공적으로 생성되었습니다.");
+    } catch (error) {
+      console.error("유저 생성 중 오류가 발생했습니다.", error);
+    }
+  };  
 
   const removeUser = (index) => {
     const newUsers = [...users];

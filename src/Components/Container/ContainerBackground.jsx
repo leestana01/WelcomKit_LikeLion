@@ -9,7 +9,7 @@ const ChildrenContainer = styled.div`
     display: flex;
     position:absolute;
     width: calc(100% - 250px);
-    height: calc(100vh - 143px);
+    height: calc(100vh - 83px);
     color: white;
 `
 

@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import styled from 'styled-components';
-import { updateProfileImage, updateProfileMiniImage } from '../../../../APIs/post/updateProfileImage';
+import { updateProfileImage, updateProfileMiniImage } from '../../../APIs/post/updateProfileImage';
 
 const ProfileCard = styled.div`
     position: relative;

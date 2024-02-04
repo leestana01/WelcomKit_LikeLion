@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import ContainerRow from "../../../../Components/Container/ContainerRow";
+import ContainerRow from '../../../Components/Container/ContainerRow';
 
 const ProfileEditContainer = styled.div`
   width: calc(100% - 320px);
@@ -63,12 +63,17 @@ const SubmitButton = styled.button`
 export default function ProfileEditForm(){
   const [major, setMajor] = useState('');
   const [team, setTeam] = useState('0');
-  const [part, setPart] = useState('frontend');
+  const [part, setPart] = useState('FRONT');
   const [teamMessage, setTeamMessage] = useState('');
+
+  const partType = {
+    'FRONT' : '프론트엔드',
+    'BACK' : '백엔드',
+    'DESIGN' : '기획/디자인'
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Form submission logic
     console.log({ major, team, part, teamMessage });
   };
 
@@ -82,44 +87,26 @@ export default function ProfileEditForm(){
             <Input type="text" value="이수혁" disabled />
           </FormGroup>
           <FormGroup>
-            <Label>팀장여부 (수정불가)</Label>
-            <Input type="text" value="False" disabled />
+            <Label>팀</Label>
+            <Input type="text" value={team} disabled />
+          </FormGroup>
+        </RowContainer>
+
+        <RowContainer>
+          <FormGroup>
+              <Label>파트</Label>
+              <Input value={partType[part]} disabled />
+            </FormGroup>
+          <FormGroup>
+            <Label>전공</Label>
+            <Input type="text" value={major} disabled />
           </FormGroup>
         </RowContainer>
 
         <FormGroup>
-          <Label>전공</Label>
-          <Input type="text" value={major} onChange={(e) => setMajor(e.target.value)} />
+          <Label>내 팀원들에게 전할 메시지</Label>
+          <TextArea rows="4" value={teamMessage} onChange={(e) => setTeamMessage(e.target.value)} />
         </FormGroup>
-
-        <RowContainer>
-          <FormGroup>
-            <Label>팀</Label>
-            <Select value={team} onChange={(e) => setTeam(e.target.value)}>
-              {[...Array(11).keys()].map((n) => (
-                <option key={n} value={n}>{n}</option>
-              ))}
-            </Select>
-          </FormGroup>
-          <FormGroup>
-            <Label>파트</Label>
-            <Select value={part} onChange={(e) => setPart(e.target.value)}>
-              <option value="FRONT">프론트엔드</option>
-              <option value="BACK">백엔드</option>
-              <option value="DESIGN">기획/디자인</option>
-            </Select>
-          </FormGroup>
-        </RowContainer>
-        <RowContainer>
-          <FormGroup>
-            <Label>내 팀원들에게 전할 메시지</Label>
-            <TextArea value={teamMessage} onChange={(e) => setTeamMessage(e.target.value)} />
-          </FormGroup>
-          <FormGroup>
-            <Label>팀장의 한마디(팀장인 경우)</Label>
-            <TextArea value={teamMessage} onChange={(e) => setTeamMessage(e.target.value)} />
-          </FormGroup>
-        </RowContainer>
         <SubmitButton type="submit">프로필 정보 수정</SubmitButton>
       </form>
     </ProfileEditContainer>

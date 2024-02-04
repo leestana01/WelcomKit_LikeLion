@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { login } from '../../APIs/post/session';
 
 const NeumorphicForm = styled.form`
   display: flex;
@@ -55,11 +56,15 @@ const NameInputForm = () => {
   const [name, setName] = useState('');
   const [pw, setPW] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    alert(`환영합니다, ${name}님!`);
+    const isSuccess = await login(name, pw); // 로그인 성공 여부 받기
+    if (!isSuccess) {
+        alert('이름 혹은 비밀번호가 일치하지 않습니다.');
+        return;
+    }
     openFixedSizeWindow('http://localhost:3000/main', 1600, 1080);
-  };
+};
 
   const openFixedSizeWindow = (url, width, height) => {
     // 새 창을 정해진 크기로 열고, 크기 조절을 금지

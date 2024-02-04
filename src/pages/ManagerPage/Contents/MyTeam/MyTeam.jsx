@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import ContainerColumn from '../../../../Components/Container/ContainerColumn';
+import getMyTeammatesForManager from '../../../../APIs/get/getMyTeammatesForManager';
+import updateTeamLeader from '../../../../APIs/post/updateTeamLeader';
 
 const UserListContainer = styled(ContainerColumn)`
   align-items: end;
@@ -33,7 +35,7 @@ const Button = styled.button`
   padding: 5px 10px;
   border: none;
   border-radius: 4px;
-  background-color: ${props => props.$background || '#007bff'};
+  background-color: green;
   color: white;
   cursor: pointer;
   &:hover {
@@ -49,52 +51,61 @@ export default function MyTeam() {
   const [users, setUsers] = useState([]);
   
   useEffect(() => {
-    setUsers([
-      { id: 1, detail: '임승민', team: '1', part:'DESIGN', isManager:false, isLeader: false },
-      { id: 2, detail: '이수혁', team: '1', part:'BACK', isManager:true, isLeader: true },
-      { id: 3, detail: '이나영', team: '1', part:'FRONT', isManager:true, isLeader: false },
-      { id: 4, detail: '김재우', team: '1', part:'FRONT', isManager:false, isLeader: false },
-      { id: 5, detail: '정재웅', team: '1', part:'BACK', isManager:false, isLeader: false },
-    ]);
+    const fetchTeammates = async () => {
+      const response = await getMyTeammatesForManager();
+      setUsers(response);
+    }
+    fetchTeammates();
   }, [])
+
+  const handleUpdateTeamLeader = async (managerId) => {
+    await updateTeamLeader(managerId);
+    alert('팀장 설정에 성공했습니다.');
+    window.location.reload();
+  };
 
   return (
     <UserListContainer>
       <UserTable>
         <thead>
           <UserRow>
-            <TableHeader>상세 정보</TableHeader>
+            <TableHeader>이름</TableHeader>
             <TableHeader>팀</TableHeader>
             <TableHeader>파트</TableHeader>
             <TableHeader>운영진 여부</TableHeader>
             <TableHeader>팀장 여부</TableHeader>
+            <TableHeader>팀장 설정</TableHeader>
           </UserRow>
         </thead>
         <tbody>
           {users.map((user) => (
             <UserRow key={user.id}>
-                <UserCell>{user.detail}</UserCell>
-                <UserCell>{user.team === 0 ? '편성 전' : user.team}</UserCell>
+                <UserCell>{user.name}</UserCell>
+                <UserCell>{user.teamId === 0 ? '편성 전' : user.team}</UserCell>
                 <UserCell>
                     {user.part === 'FRONT' ? '프론트엔드' :
                     user.part === 'BACK' ? '백엔드' :
                     user.part === 'DESIGN' ? '기획/디자인' : user.part}
                 </UserCell>
                 <UserCell>
-                    <TextWritten $color={user.isManager ? 'red' : 'blue'}>
-                        {user.isManager ? '운영진' : '아기사자'}
+                    <TextWritten $color={user.userType !== 'ROLE_USER' ? 'red' : 'blue'}>
+                        {user.userType !== 'ROLE_USER' ? '운영진' : '아기사자'}
                     </TextWritten>
                 </UserCell>
                 <UserCell>
-                    <TextWritten $color={user.isLeader ? 'red' : 'blue'}>
-                        {user.isLeader ? '팀장' : '팀원'}
+                    <TextWritten $color={user.teamLeader ? 'red' : 'blue'}>
+                        {user.teamLeader ? '팀장' : '팀원'}
                     </TextWritten>
                 </UserCell>
+                <UserCell>
+                  {user.userType !== 'ROLE_USER' && (
+                    <Button onClick={() => handleUpdateTeamLeader(user.id)}> 팀장 지정 </Button>
+                  )}
+              </UserCell>
             </UserRow>
           ))}
         </tbody>
       </UserTable>
-      <Button>나를 팀장으로 <br/>(바꾸려면 해당 사람이 직접 버튼 클릭해야함)</Button>
     </UserListContainer>
   );
 };
