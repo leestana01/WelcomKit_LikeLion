@@ -212,7 +212,7 @@ export default function Component({ isWho }) {
                             <Detail>UXUI 디자이너에게 필수적인 제플린과 어도비 XD</Detail>
                         </ContainerRow>
                         <ContainerRow>
-                            <StyledImg src={'/img/icon_AtoZ.png'} width='140px' height='80px' />
+                            <StyledImg src={'/img/icon_AtoZ.png'} width='140px' height='50px' />
                             <Detail>웹사이트에 대한 모든 것을 기획 및 설계하는 웹 기획자</Detail>
                         </ContainerRow>
                     </MiniGapColumn>

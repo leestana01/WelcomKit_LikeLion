@@ -3,6 +3,9 @@ import ContainerBackground from '../../../Components/Container/ContainerBackgrou
 import StyledImg from '../../../Components/Container/CustomImg';
 import React, { useState } from 'react';
 import SkillInfo from './SkillInfo';
+import SkillList from './SkillList';
+import LionSpace from './LionSpace';
+import LionMind from './LionMind';
 
 const ContainerCenter = styled.div`
   display: flex;
@@ -37,40 +40,6 @@ const Line = styled.div`
     height: 1px;
 `;
 
-const Skill = styled.h1`
-font-size: 20px;
-font-family: 'LINE-Bd';
-color: #C8A55C;
-text-align: center;
-`;
-
-const SkillContainer = styled.div`
-display: flex;
-flex-direction: column;
-gap: 20px;
-align-items: center;
-`;
-
-const ImageContainer = styled.div`
-  width: 200px;
-  height: 200px;
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  &:hover::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: linear-gradient(to top, #8F6E2E, transparent);
-    z-index: 2; // 오버레이가 이미지 위에 오도록 z-index 설정
-  }
-`;
-
 const CustomRow = styled.div`
 display: flex;
 flex-direction: row;
@@ -83,6 +52,31 @@ flex-direction: column;
 gap: 80px;
 `;
 
+const MiniColumn = styled.div`
+display: flex;
+flex-direction: column;
+gap: 40px;
+`;
+
+const CustomCenter = styled.div`
+display: flex;
+align-items: center;
+justify-content: center;
+`;
+
+const Top = styled.div`
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+height: 40vh; // 화면 높이의 1/3
+gap: 40px;
+`
+
+const ContentContainer = styled.div`
+  height: 60vh; // 화면 높이의 2/3
+`;
+
 const Item = styled.h1`
 font-size: 30px;
 font-family: 'LINE-Bd';
@@ -90,66 +84,55 @@ color: #3B454E;
 text-align: left;
 `;
 
+const Prepare = styled.h1`
+font-size: 20px;
+font-family: 'LINE-Bd';
+color: #3B454E;
+text-align: center;
+`;
+
 export default function Component() {
 
-    const [isWhat, setIsWhat] = useState(1);
+    //const [isWhat, setIsWhat] = useState(1);
+    const [isWhat, setIsWhat] = useState(null);
+    const [currentPage, setCurrentPage] = useState(null);
+
+    const handleLionMindClick = () => setCurrentPage('LionMind');
+    const handleSkillClick = () => setCurrentPage('Skills');
+    const handleLionSpaceClick = () => setCurrentPage('LionSpace');
 
     return (
         <ContainerBackground>
             <PageContainer>
-                <GradientText>아가사자의 협곡에 오신 것을 환영합니다.</GradientText>
-                <Line />
-                <CustomColumn>
-                    <Item>생존을 위해 필요한 스킬</Item>
-                    <CustomRow>
-                        <SkillContainer onClick={() => setIsWhat(1)}>
-                            <ImageContainer>
-                                <StyledImg src={'/img/icon_github_black.png'} width='200px' height='200px' />
-                            </ImageContainer>
-                            <Skill>
-                                Github
-                            </Skill>
-                        </SkillContainer>
-
-                        <SkillContainer onClick={() => setIsWhat(2)}>
-                            <ImageContainer>
-                                <StyledImg src={'/img/icon_slack.png'} width='200px' height='200px' />
-                            </ImageContainer>
-                            <Skill>
-                                Slack
-                            </Skill>
-                        </SkillContainer>
-
-                        <SkillContainer onClick={() => setIsWhat(3)}>
-                            <ImageContainer>
-                                <StyledImg src={'/img/notion.png'} width='200px' height='200px' />
-                            </ImageContainer>
-                            <Skill>
-                                Notion
-                            </Skill>
-                        </SkillContainer>
-
-                        <SkillContainer onClick={() => setIsWhat(4)}>
-                            <ImageContainer>
-                                <StyledImg src={'/img/gather.png'} width='200px' height='200px' />
-                            </ImageContainer>
-                            <Skill>
-                                Gather
-                            </Skill>
-                        </SkillContainer>
-
-                        <SkillContainer onClick={() => setIsWhat(5)}>
-                            <ImageContainer>
-                                <StyledImg src={'/img/icon_discord.png'} width='200px' height='200px' />
-                            </ImageContainer>
-                            <Skill>
-                                Discord
-                            </Skill>
-                        </SkillContainer>
-                    </CustomRow>
-                    <SkillInfo isWhat={isWhat} />
-                </CustomColumn>
+                <Top>
+                    <GradientText>아가사자의 협곡에 오신 것을 환영합니다.</GradientText>
+                    <Line />
+                    <CustomColumn>
+                        <CustomCenter>
+                            <MiniColumn>
+                                <Prepare>[ 아래의 세가지 탭을 하나씩 클릭하여 멋쟁이 사자가 될 준비를 마치세요. ]</Prepare>
+                                <CustomRow>
+                                    <Item onClick={handleLionMindClick}>사자들의 행동 강령 보기</Item>
+                                    <Item>|</Item>
+                                    <Item onClick={handleSkillClick}>초원에서 생존하기 위한 스킬</Item>
+                                    <Item>|</Item>
+                                    <Item onClick={handleLionSpaceClick}>사자들의 서식지 확인하기</Item>
+                                </CustomRow>
+                            </MiniColumn>
+                        </CustomCenter>
+                    </CustomColumn>
+                </Top>
+                <ContentContainer>
+                    <CustomColumn>
+                        {currentPage === 'Skills' && <>
+                            <SkillList setIsWhat={setIsWhat} />
+                            <SkillInfo isWhat={isWhat} />
+                        </>}
+                        {currentPage === 'LionMind' && <LionMind />}
+                        {currentPage === 'LionSpace' && <LionSpace />}
+                    </CustomColumn>
+                </ContentContainer>
             </PageContainer>
-        </ContainerBackground>
+        </ContainerBackground >
     )
 }
