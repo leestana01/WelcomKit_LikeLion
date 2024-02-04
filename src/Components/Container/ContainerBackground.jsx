@@ -9,7 +9,7 @@ const ChildrenContainer = styled.div`
     display: flex;
     position:absolute;
     width: calc(100% - 250px);
-    height: calc(100vh - 143px);
+    height: calc(100vh - 83px);
     color: white;
 `
 
@@ -33,7 +33,7 @@ const DarkLogo = styled.img`
     height: ${props => props.$isFull ? "100%" : null};
 `;
 
-export default function Component({$imgSrc, children}) {
+export default function Component({ $imgSrc, children }) {
     return (
         <BodyContainer>
             <BlackBackgroundDiv>

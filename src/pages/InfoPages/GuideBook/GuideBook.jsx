@@ -88,12 +88,12 @@ display: flex;
 flex-direction: column;
 align-items: center;
 justify-content: center;
-height: 40vh; // 화면 높이의 1/3
+height: 40vh;
 gap: 40px;
 `
 
 const ContentContainer = styled.div`
-  height: 60vh; // 화면 높이의 2/3
+  height: 60vh;
 `;
 
 const Item = styled.h1`
