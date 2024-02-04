@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 
 const InfoContainer = styled.div`
     width: 100%;
-    height: 200px;
+    height: 150px;
     background-color: #010A13;
     border: 2px solid #372C16;
     padding: 30px;
@@ -43,6 +43,12 @@ flex-direction: column;
 gap: 40px;
 `;
 
+const CustomCenter = styled.div`
+display: flex;
+align-items: center;
+justify-content: center;
+`;
+
 const Line = styled.div`
     background-color: #0A141B;
     width: 90%;
@@ -50,23 +56,28 @@ const Line = styled.div`
 `;
 
 const Skill = styled.h1`
-font-size: 20px;
+font-size: 40px;
 font-family: 'LINE-Bd';
-color: #C8A55C;
+background: linear-gradient(to bottom, #C8A96C, #7B5D28);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+padding-top: 2px; /* 위쪽에 약간의 패딩 추가 */
+display: inline-block; /* display 속성 조정 */
 `;
 
 const Detail = styled.a`
-font-size: 15px;
-font-family: 'LINE-Bd';
-font-weight: bold;
-color: #C8A55C;
-line-height: 18px;
+background: linear-gradient(to bottom, #C8A96C, #7B5D28);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+line-height: 23px; /* 라인 높이 조정 */
+padding-top: 2px; /* 위쪽에 약간의 패딩 추가 */
+display: inline-block; /* display 속성 조정 */
 `;
 
 const Star = styled.div`
   display: inline-block;
-  width: 50px; 
-  height: 50px; 
+  width: 40px; 
+  height: 40px; 
   background-color: gold; 
   clip-path: polygon(
     50% 0%, 
@@ -90,7 +101,9 @@ export default function Component({ isWhat }) {
             {isWhat === 1 && (<InfoContainer>
                 <CustomColumn>
                     <CustomRow>
-                        <Skill>중요도:</Skill>
+                        <CustomCenter>
+                            <Skill>중요도:</Skill>
+                        </CustomCenter>
                         <Star />
                         <Star />
                         <Star />
@@ -107,7 +120,9 @@ export default function Component({ isWhat }) {
             {isWhat === 2 && (<InfoContainer>
                 <CustomColumn>
                     <CustomRow>
-                        <Skill>중요도:</Skill>
+                        <CustomCenter>
+                            <Skill>중요도:</Skill>
+                        </CustomCenter>
                         <Star />
                         <Star />
                     </CustomRow>
@@ -119,7 +134,9 @@ export default function Component({ isWhat }) {
             {isWhat === 3 && (<InfoContainer>
                 <CustomColumn>
                     <CustomRow>
-                        <Skill>중요도:</Skill>
+                        <CustomCenter>
+                            <Skill>중요도:</Skill>
+                        </CustomCenter>
                         <Star />
                         <Star />
                         <Star />
@@ -133,7 +150,9 @@ export default function Component({ isWhat }) {
             {isWhat === 4 && (<InfoContainer>
                 <CustomColumn>
                     <CustomRow>
-                        <Skill>중요도:</Skill>
+                        <CustomCenter>
+                            <Skill>중요도:</Skill>
+                        </CustomCenter>
                         <Star />
                         <Star />
                         <Star />
@@ -146,7 +165,9 @@ export default function Component({ isWhat }) {
             {isWhat === 5 && (<InfoContainer>
                 <CustomColumn>
                     <CustomRow>
-                        <Skill>중요도:</Skill>
+                        <CustomCenter>
+                            <Skill>중요도:</Skill>
+                        </CustomCenter>
                         <Star />
                         <Star />
                     </CustomRow>

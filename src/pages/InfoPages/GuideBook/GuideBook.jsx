@@ -102,7 +102,7 @@ export default function Component() {
                 <CustomColumn>
                     <Item>생존을 위해 필요한 스킬</Item>
                     <CustomRow>
-                        <SkillContainer $onClick={() => setIsWhat(1)}>
+                        <SkillContainer onClick={() => setIsWhat(1)}>
                             <ImageContainer>
                                 <StyledImg src={'/img/icon_github_black.png'} width='200px' height='200px' />
                             </ImageContainer>
@@ -111,7 +111,7 @@ export default function Component() {
                             </Skill>
                         </SkillContainer>
 
-                        <SkillContainer $onClick={() => setIsWhat(2)}>
+                        <SkillContainer onClick={() => setIsWhat(2)}>
                             <ImageContainer>
                                 <StyledImg src={'/img/icon_slack.png'} width='200px' height='200px' />
                             </ImageContainer>
@@ -120,7 +120,7 @@ export default function Component() {
                             </Skill>
                         </SkillContainer>
 
-                        <SkillContainer $onClick={() => setIsWhat(3)}>
+                        <SkillContainer onClick={() => setIsWhat(3)}>
                             <ImageContainer>
                                 <StyledImg src={'/img/notion.png'} width='200px' height='200px' />
                             </ImageContainer>
@@ -129,7 +129,7 @@ export default function Component() {
                             </Skill>
                         </SkillContainer>
 
-                        <SkillContainer $onClick={() => setIsWhat(4)}>
+                        <SkillContainer onClick={() => setIsWhat(4)}>
                             <ImageContainer>
                                 <StyledImg src={'/img/gather.png'} width='200px' height='200px' />
                             </ImageContainer>
@@ -138,7 +138,7 @@ export default function Component() {
                             </Skill>
                         </SkillContainer>
 
-                        <SkillContainer $onClick={() => setIsWhat(5)}>
+                        <SkillContainer onClick={() => setIsWhat(5)}>
                             <ImageContainer>
                                 <StyledImg src={'/img/icon_discord.png'} width='200px' height='200px' />
                             </ImageContainer>
