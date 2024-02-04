@@ -21,6 +21,25 @@ const PageContainer = styled(ContainerCenter)`
     flex-direction: column;
     justify-content: center;
     gap: 30px;
+    overflow: auto;
+
+    &::-webkit-scrollbar {
+        width: 10px;
+        border-radius: 20px;
+        margin: 5px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: transparent;
+        border-radius: 20px;
+        margin: 5px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: linear-gradient(to bottom, #C8A96C, #7B5D28);
+        border-radius: 20px;
+        margin: 5px;
+    }
 `
 
 const GradientText = styled.h1`
