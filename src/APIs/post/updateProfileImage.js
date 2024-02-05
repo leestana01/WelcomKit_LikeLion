@@ -29,7 +29,7 @@ export async function updateProfileMiniImage(file) {
 
     try {
         const response = await axios.post(
-            `${process.env.REACT_APP_SERVER}/api/v1/users/profile-img`,
+            `${process.env.REACT_APP_SERVER}/api/v1/users/profile-img/mini`,
             formData,
             {
                 headers: {

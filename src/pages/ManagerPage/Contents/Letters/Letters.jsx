@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import getBabyLions from '../../../../APIs/get/getBabyLions';
 import createWelcomeLetter from '../../../../APIs/post/createWelcomeLetter';
+import partType from '../../../../partType';
 
 const UserListContainer = styled.div`
   padding: 20px;
@@ -77,6 +78,11 @@ const TextInput = styled.input`
   border-radius: 4px;
 `;
 
+const TextTitle = styled.h1`
+    font-family: LINE-Bd;
+    font-size: 1.5rem;
+`
+
 const TextWritten = styled.p`
   color: ${props => props.$color};
 `
@@ -104,6 +110,8 @@ export default function Letters() {
 
   return (
     <UserListContainer>
+      <TextTitle>수정 전 편지를 포함한 모든 편지는 로그로 기록됩니다.</TextTitle>
+      <p>미풍양속을 해치거나 기타 법률, 도덕적 위반 가능성이 있는 메시지는 삼가바랍니다.</p>
       <UserTable>
         <thead>
           <UserRow>
@@ -119,11 +127,7 @@ export default function Letters() {
             <UserRow key={user.id}>
                 <UserCell>{user.name}</UserCell>
                 <UserCell>{user.teamId === 0 ? '편성 전' : user.teamId}</UserCell>
-                <UserCell>
-                    {user.part === 'FRONT' ? '프론트엔드' :
-                    user.part === 'BACK' ? '백엔드' :
-                    user.part === 'DESIGN' ? '기획/디자인' : user.part}
-                </UserCell>
+                <UserCell>{partType[user.part]}</UserCell>
                 <UserCell>
                     <TextWritten $color={user.messageWritten ? 'red' : 'blue'}>
                         {user.messageWritten ? '작성됨' : '미작성'}

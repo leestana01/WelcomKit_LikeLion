@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import ContainerRow from '../../../Components/Container/ContainerRow';
+import partType from '../../../partType';
+import updateTeamMessage from '../../../APIs/post/updateTeamMessage';
 
 const ProfileEditContainer = styled.div`
   width: calc(100% - 320px);
@@ -33,12 +35,12 @@ const Input = styled.input`
   border-radius: 4px;
 `;
 
-const Select = styled.select`
-  width: 100%;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-`;
+// const Select = styled.select`
+//   width: 100%;
+//   padding: 8px;
+//   border: 1px solid #ccc;
+//   border-radius: 4px;
+// `;
 
 const TextArea = styled.textarea`
   width: calc(100% - 16px);
@@ -49,65 +51,66 @@ const TextArea = styled.textarea`
 
 const SubmitButton = styled.button`
   width: 100%;
+  height: 50px;
   padding: 10px;
   border: none;
   border-radius: 4px;
-  background-color: #007bff;
+  background-color: ${props => props.$color || "#007bff"};
   color: white;
   cursor: pointer;
   &:hover {
-    background-color: #0056b3;
+    background-color: lightgray;
   }
 `;
 
-export default function ProfileEditForm(){
-  const [major, setMajor] = useState('');
-  const [team, setTeam] = useState('0');
-  const [part, setPart] = useState('FRONT');
+export default function ProfileEditForm({$name, $teamId, $part, $department, $teamMessage}){
   const [teamMessage, setTeamMessage] = useState('');
 
-  const partType = {
-    'FRONT' : '프론트엔드',
-    'BACK' : '백엔드',
-    'DESIGN' : '기획/디자인'
-  }
+  useEffect(() => {
+    setTeamMessage($teamMessage);
+  }, [$teamMessage])
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log({ major, team, part, teamMessage });
+    await updateTeamMessage(teamMessage)
+      .then(() =>{
+        alert('팀 메시지가 업데이트 되었습니다.');
+        window.location.reload();
+      });
   };
 
   return (
     <ProfileEditContainer>
       <form onSubmit={handleSubmit}>
-
         <RowContainer>
           <FormGroup>
-            <Label>이름 (수정불가)</Label>
-            <Input type="text" value="이수혁" disabled />
+            <Label>이름</Label>
+            <Input type="text" value={$name || ''} disabled />
           </FormGroup>
           <FormGroup>
             <Label>팀</Label>
-            <Input type="text" value={team} disabled />
+            <Input type="text" value={$teamId === 0 ? '편성 전' : $teamId || 0} disabled />
           </FormGroup>
         </RowContainer>
 
         <RowContainer>
           <FormGroup>
               <Label>파트</Label>
-              <Input value={partType[part]} disabled />
+              <Input value={partType[$part || 'FRONT']} disabled />
             </FormGroup>
           <FormGroup>
             <Label>전공</Label>
-            <Input type="text" value={major} disabled />
+            <Input type="text" value={$department || ''} disabled />
           </FormGroup>
         </RowContainer>
 
-        <FormGroup>
-          <Label>내 팀원들에게 전할 메시지</Label>
-          <TextArea rows="4" value={teamMessage} onChange={(e) => setTeamMessage(e.target.value)} />
-        </FormGroup>
-        <SubmitButton type="submit">프로필 정보 수정</SubmitButton>
+        <RowContainer>
+          <FormGroup>
+            <Label>내 팀원들에게 전할 메시지</Label>
+            <TextArea rows="2" value={teamMessage} onChange={(e) => setTeamMessage(e.target.value)} />
+          </FormGroup>
+          <SubmitButton type="submit">프로필 정보 수정</SubmitButton>
+        </RowContainer>
       </form>
     </ProfileEditContainer>
   );

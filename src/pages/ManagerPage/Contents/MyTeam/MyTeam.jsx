@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import ContainerColumn from '../../../../Components/Container/ContainerColumn';
 import getMyTeammatesForManager from '../../../../APIs/get/getMyTeammatesForManager';
 import updateTeamLeader from '../../../../APIs/post/updateTeamLeader';
+import partType from '../../../../partType';
 
 const UserListContainer = styled(ContainerColumn)`
   align-items: end;
@@ -82,11 +83,7 @@ export default function MyTeam() {
             <UserRow key={user.id}>
                 <UserCell>{user.name}</UserCell>
                 <UserCell>{user.teamId === 0 ? '편성 전' : user.team}</UserCell>
-                <UserCell>
-                    {user.part === 'FRONT' ? '프론트엔드' :
-                    user.part === 'BACK' ? '백엔드' :
-                    user.part === 'DESIGN' ? '기획/디자인' : user.part}
-                </UserCell>
+                <UserCell>{partType[user.part]}</UserCell>
                 <UserCell>
                     <TextWritten $color={user.userType !== 'ROLE_USER' ? 'red' : 'blue'}>
                         {user.userType !== 'ROLE_USER' ? '운영진' : '아기사자'}

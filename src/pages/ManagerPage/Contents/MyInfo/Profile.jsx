@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import styled from 'styled-components';
 import { updateProfileImage, updateProfileMiniImage } from '../../../../APIs/post/updateProfileImage';
+import partType from '../../../../partType';
 
 const ProfileCard = styled.div`
     position: relative;
@@ -18,6 +19,17 @@ const imageHoverStyle = `
     }
 `;
 
+const ProfileLargeImage = styled.div`
+    width: 100%;
+    height: 150px;
+    background: black;
+
+    background-image: url(${props => props.$src});
+    background-size: cover;
+    background-position: center;
+    ${imageHoverStyle}
+`
+
 const ProfileMiniImage = styled.div`
     position: absolute;
     top: 100px;
@@ -29,21 +41,10 @@ const ProfileMiniImage = styled.div`
     left: calc(50% - 50px);
 
     background-image: url(${props => props.$src});
-    background-size: cover;
+    background-size: 100% 100%;
     background-position: center;
     ${imageHoverStyle}
 `;
-
-const ProfileLargeImage = styled.div`
-    width: 100%;
-    height: 150px;
-    background: black;
-
-    background-image: url(${props => props.$src});
-    background-size: cover;
-    background-position: center;
-    ${imageHoverStyle}
-`
 
 const ProfileInfo = styled.div`
     padding: 70px 20px 20px 20px;
@@ -70,11 +71,11 @@ export default function Profile({$large, $mini, $name, $part, $message}){
     const miniInputRef = useRef(null);
     const largeInputRef = useRef(null);
 
-    const partType = {
-        'FRONT': '프론트엔드',
-        'BACK': '백엔드',
-        'DESIGN': '기획/디자인'
-    }
+    const handleLargeImageChange = async (event) => {
+        const file = event.target.files[0];
+        await updateProfileImage(file)
+            .then(() => window.location.reload());
+    };
 
     const handleMiniImageChange = async (event) => {
         const file = event.target.files[0];
@@ -82,19 +83,15 @@ export default function Profile({$large, $mini, $name, $part, $message}){
             .then(() => window.location.reload());
     };
 
-    const handleLargeImageChange = async (event) => {
-        const file = event.target.files[0];
-        await updateProfileImage(file)
-            .then(() => window.location.reload());
-    };
 
     return (
         <ProfileCard>
+            <input type="file" ref={largeInputRef} style={{ display: 'none' }} accept="image/*" onChange={handleLargeImageChange} />
+            <ProfileLargeImage $src={$large} onClick={() => largeInputRef.current.click()} />
+
             <input type="file" ref={miniInputRef} style={{ display: 'none' }} accept="image/*" onChange={handleMiniImageChange} />
             <ProfileMiniImage $src={$mini} onClick={() => miniInputRef.current.click()} />
 
-            <input type="file" ref={largeInputRef} style={{ display: 'none' }} accept="image/*" onChange={handleLargeImageChange} />
-            <ProfileLargeImage $src={$large} onClick={() => largeInputRef.current.click()} />
             <ProfileInfo>
             <Name>{$name}</Name>
             <Part>{partType[$part]}</Part>

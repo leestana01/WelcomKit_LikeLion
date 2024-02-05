@@ -33,7 +33,15 @@ export default function MyInfo() {
                 $part={myPageInfo.part}
                 $message={myPageInfo.teamMessage}
             />
-            <ProfileEditForm /> 
+            <ProfileEditForm 
+                $name={myPageInfo.name}
+                $isTeamLeader={myPageInfo.teamLeader}
+                $teamId={myPageInfo.teamId}
+                $part={myPageInfo.part}
+                $department={myPageInfo.department}
+                $teamMessage={myPageInfo.teamMessage}
+                $teamLeaderMessage={myPageInfo.teamLeaderMessage}
+            /> 
         </RowContainer>
     )
 }

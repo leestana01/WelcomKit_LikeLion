@@ -10,7 +10,6 @@ export default async function getMyPageInfo() {
                 }
             }
         );
-        console.log(response.data);
         return response.data
     } catch {
         return false;
