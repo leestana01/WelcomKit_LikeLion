@@ -34,7 +34,7 @@ export default function Component() {
             <LetsGame />
 
             {
-                sessionStorage.getItem('role') === 'ROLE_MANAGER' &&
+                sessionStorage.getItem('role') !== 'ROLE_USER' &&
                 <ManagerPage />
             }
         </InfoContainer>
