@@ -1,6 +1,4 @@
 import styled from 'styled-components';
-import ContainerBackground from '../../../Components/Container/ContainerBackground';
-import StyledImg from '../../../Components/Container/CustomImg';
 
 const ContainerCenter = styled.div`
   display: flex;
@@ -48,11 +46,11 @@ const Container = styled.div`
     
 `;
 
-const CustomRow = styled.div`
-display: flex;
-flex-direction: row;
-gap: 40px;
-`;
+// const CustomRow = styled.div`
+// display: flex;
+// flex-direction: row;
+// gap: 40px;
+// `;
 
 const CustomColumn = styled.div`
 display: flex;

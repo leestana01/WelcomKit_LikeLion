@@ -1,7 +1,5 @@
 import styled from 'styled-components';
-import ContainerBackground from '../../../Components/Container/ContainerBackground';
-import StyledImg from '../../../Components/Container/CustomImg';
-import React, { useState } from 'react';
+import React from 'react';
 
 const InfoContainer = styled.div`
     width: 100%;
@@ -49,11 +47,11 @@ align-items: center;
 justify-content: center;
 `;
 
-const Line = styled.div`
-    background-color: #0A141B;
-    width: 90%;
-    height: 1px;
-`;
+// const Line = styled.div`
+//     background-color: #0A141B;
+//     width: 90%;
+//     height: 1px;
+// `;
 
 const Skill = styled.h1`
 font-size: 40px;

@@ -1,7 +1,5 @@
 import styled from 'styled-components';
-import ContainerBackground from '../../../Components/Container/ContainerBackground';
 import StyledImg from '../../../Components/Container/CustomImg';
-import Basic from '../../../Components/Buttons/Basic';
 
 const InfoContainer = styled.div`
     width: 90%;

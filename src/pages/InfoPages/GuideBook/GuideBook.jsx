@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import ContainerBackground from '../../../Components/Container/ContainerBackground';
-import StyledImg from '../../../Components/Container/CustomImg';
 import React, { useState } from 'react';
 import SkillInfo from './SkillInfo';
 import SkillList from './SkillList';

@@ -25,11 +25,11 @@ import MyTeam from "./pages/ManagerPage/Contents/MyTeam/MyTeam";
 
 export default createBrowserRouter([
     {
-        path: "",
+        path: "/",
         element: <FirstPage />
     },
     {
-        path: "main",
+        path: "/main",
         element: <ForOutlet/>,
         children: [
             {

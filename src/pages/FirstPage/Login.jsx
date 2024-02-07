@@ -63,7 +63,7 @@ const NameInputForm = () => {
         alert('이름 혹은 비밀번호가 일치하지 않습니다.');
         return;
     }
-    openFixedSizeWindow('http://localhost:3000/main', 1600, 1080);
+    openFixedSizeWindow(`${window.location.origin}/main`, 1600, 1080);
 };
 
   const openFixedSizeWindow = (url, width, height) => {

@@ -16,11 +16,11 @@ const MiniGapColumn = styled.div`
     gap: 40px;
 `;
 
-const StepColumn = styled.div`
-flex: 1;
-display: flex;
-flex-direction: column;
-`;
+// const StepColumn = styled.div`
+// flex: 1;
+// display: flex;
+// flex-direction: column;
+// `;
 
 const CustomRow = styled.div`
 flex: 1;
