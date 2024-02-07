@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import styled from 'styled-components';
-import { updateProfileImage, updateProfileMiniImage } from '../../../../APIs/post/updateProfileImage';
-import partType from '../../../../partType';
+import { updateProfileImage, updateProfileMiniImage } from '../../../APIs/post/updateProfileImage';
+import partType from '../../../partType';
 
 const ProfileCard = styled.div`
     position: relative;

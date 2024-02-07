@@ -33,7 +33,10 @@ export default function Component() {
             <GuideBook />
             <LetsGame />
 
-            <ManagerPage />
+            {
+                sessionStorage.getItem('role') === 'ROLE_MANAGER' &&
+                <ManagerPage />
+            }
         </InfoContainer>
     )
 };
