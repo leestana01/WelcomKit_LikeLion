@@ -108,10 +108,10 @@ export default function ProfileEditForm({$name, $isTeamLeader, $teamId, $part, $
 
         <RowContainer>
           <FormGroup>
-            <Label>팀</Label>
+            <Label>팀 ( 『무조건』 팀장 양도하고 변경해야 오류 안납니다! )</Label>
             <Select value={team} onChange={(e) => setTeam(e.target.value)}>
               {[...Array(11).keys()].map((n) => (
-                <option key={n} value={n}>{n}</option>
+                <option key={n} value={n}>{n === 0 ? "(없음)" : n}</option>
               ))}
             </Select>
           </FormGroup>
