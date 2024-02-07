@@ -1,4 +1,5 @@
 import axios from "axios";
+import axiosInstance from "../axiosInstance";
 
 export async function login(username, password) {
     try {
@@ -7,7 +8,7 @@ export async function login(username, password) {
             { 'name' : username, 'password' : password }
         );
         const { jwtToken, role } = response.data;
-        sessionStorage.setItem('jwtToken', jwtToken);
+        sessionStorage.setItem('jwtToken', `Bearer ${jwtToken}`);
         sessionStorage.setItem('role', role);
         return true;
     } catch {
@@ -16,6 +17,6 @@ export async function login(username, password) {
 };
 
 export const logout = () => {
-    sessionStorage.removeItem('jwtToken');
     sessionStorage.removeItem('role');
+    delete axiosInstance.defaults.headers.common['Authorization'];
 };

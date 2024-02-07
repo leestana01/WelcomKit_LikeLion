@@ -1,14 +1,9 @@
-import axios from "axios";
+import axiosInstance from "../axiosInstance";
 
 export default async function getMyTeammatesForManager() {
     try {
-        const response = await axios.get(
-            `${process.env.REACT_APP_SERVER}/api/v1/managers/teammates`,
-            {
-                headers : {
-                    Authorization: `Bearer ${sessionStorage.getItem('jwtToken')}`
-                }
-            }
+        const response = await axiosInstance.get(
+            `/api/v1/managers/teammates`,
         );
         return response.data
     } catch {

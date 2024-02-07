@@ -1,16 +1,11 @@
-import axios from "axios";
+import axiosInstance from "../axiosInstance";
 
 export default async function updatePassword(password) {
     try {
-        const response = await axios.post(
+        const response = await axiosInstance.post(
             `${process.env.REACT_APP_SERVER}/api/v1/users/password`, 
             {
                 'password':password
-            },
-            {
-                headers: {
-                    Authorization: `Bearer ${sessionStorage.getItem('jwtToken')}`
-                }
             }
         );
         console.log(`비밀번호 변경에 성공하였습니다.`, response.data);
