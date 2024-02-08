@@ -1,6 +1,11 @@
 import styled from 'styled-components';
 import ContainerBackground from '../../../Components/Container/ContainerBackground';
+import Basic from '../../../Components/Buttons/Basic';
+import { useEffect, useState } from 'react';
+import ContainerRow from '../../../Components/Container/ContainerRow';
+import getIsManitoActive from '../../../APIs/get/getIsManitoActive';
 import ContainerColumn from '../../../Components/Container/ContainerColumn';
+import getMyManito from '../../../APIs/get/getMyManito';
 
 const ContainerCenter = styled.div`
   display: flex;
@@ -11,14 +16,6 @@ const ContainerCenter = styled.div`
   width: 100%;
 `
 
-const GameInfoContainer = styled(ContainerCenter)`
-  background: white;
-  color: black;
-  width: auto;
-  padding: 10px;
-  border: 3px solid orange;
-`
-
 const PageContainer = styled(ContainerCenter)`
   display: flex;
   flex-direction: column;
@@ -26,9 +23,26 @@ const PageContainer = styled(ContainerCenter)`
   gap: 30px;
 `
 
+const LetterButtonBox = styled(ContainerRow)`
+  gap: 2rem;
+`
+
+const LetterContainer = styled(ContainerColumn)`
+  height: 30vh;
+`
+
+const ManitoButtonBox = styled(ContainerColumn)`
+  align-items: center;
+  gap: 10px;
+`
+
+const ManitoButtonContainer = styled(ContainerRow)`
+  gap: 10px;
+`
+
 const TextH1 = styled.h1`
   font-family: 'LINE-Bd', sans-serif;
-  font-size: 40px;
+  font-size: 80px;
   color: orange;
 `
 
@@ -37,52 +51,106 @@ const TextH2 = styled.h2`
   font-size: 30px;
 `
 
-const TextH3 = styled.h3`
+const TextLetterHeader = styled.h2`
+  color: lightgray;
   font-family: 'LINE-Bd', sans-serif;
-  font-size: 25px;
-  color: orange;
+  font-size: 30px;
 `
 
-const StyledList = styled.ul`
-  list-style-type: disc;
-  line-height: 2em;
-`
-
-const ListItem = styled.li`
+const TextManito = styled.p`
+  font-size: 1.2rem;
 `
 
 export default function Component() {
+  const [isManitoActive, setIsManitoActive] = useState(false);
+  const [manitoTo, setManitoTo] = useState("");
+  const [manitoFrom, setManitoFrom] = useState("");
+
+  useEffect(()=> {
+    const fetchManitoActive = async () => {
+      const response = await getIsManitoActive();
+      if (response === true){
+        setIsManitoActive(true);
+        return;
+      }
+      setIsManitoActive(false);
+    }
+    fetchManitoActive();
+  },[]);
+
+  useEffect(()=> {
+    if (!isManitoActive){
+      return;
+    }
+    const fetchMyManito = async () => {
+      try{
+        const response = await getMyManito();
+        setManitoTo(response.manitoTo);
+        setManitoFrom(response.manitoFrom);
+      } catch {
+        setManitoTo();
+        setManitoFrom();
+      }
+    }
+    fetchMyManito();
+  },[isManitoActive])
+
+  // 임시 데이터
+  const Letters = [
+    {
+      "message": "안녕하세요 테스트님! 테스트님의 열정에 감탄했습니다. 앞으로 멋사에서 테스트님이 발휘하실 테스트 정신, 많이 기대하겠습니다!",
+    },
+    {
+      "message": "예시 메시지입니다!",
+    },
+    {
+      "message": "예시 메시지 2 입니다!!!!!!!!!!!!!!!!!!!",
+    }
+    
+  ]
   
   return (
-    <ContainerBackground>
+    <ContainerBackground $imgSrc={"/img/manito_background.png"}>
       <PageContainer>
+        {
+          isManitoActive &&
+          (
+            <>
+            <LetterButtonBox>
+              <TextLetterHeader>내 마니또에게 편지 쓰기</TextLetterHeader>
+              <TextLetterHeader>|</TextLetterHeader>
+              <TextLetterHeader>맞니또가 보낸 편지 보기</TextLetterHeader>
+            </LetterButtonBox>
+            <LetterContainer>
+              {/* 여기에 편지쓰기 Form 또는 편지 리스트를 보여야 함 */}
+            </LetterContainer>
+            </>
+          )
+        }
         
         <TextH1>마니또를 찾아라!</TextH1>
 
         <ContainerCenter>
           <TextH2>마니또 게임에 오신 것을 환영합니다!</TextH2>
-          <p>이번 동아리 활동 동안 우리는 서로에게 익명으로 도움을 주고받으며 즐거운 시간을 보낼 예정입니다.</p>
-          <p>마니또 게임을 통해 동아리원들과의 유대를 더욱 깊게 하고, 익명의 친구에게 따뜻한 마음을 전달해보세요.</p>
         </ContainerCenter>
-
-        <GameInfoContainer>
-          <TextH2>게임 정보</TextH2>
-          <p>동아리 회장이 '시작' 버튼을 누르면 바로 랜덤 배정됩니다.</p>
-          <TextH3>나는 누구의 마니또일까?</TextH3>
-          <TextH3>{"<<"}시작 대기 중{">>"}</TextH3>
-        </GameInfoContainer>
-
-        <ContainerCenter>
-          <TextH2>게임 규칙</TextH2>
-          <ContainerColumn>
-            <StyledList>
-              <ListItem>마니또와 맞니또는 랜덤으로 배정됩니다.</ListItem>
-              <ListItem>정체는 끝까지 비밀로 유지해주세요.</ListItem>
-              <ListItem>선물은 최대 X원까지만 가능합니다.</ListItem>
-            </StyledList>
-          </ContainerColumn>
-        </ContainerCenter>
-
+        {
+          isManitoActive ?
+          (
+            <ManitoButtonContainer>
+              <ManitoButtonBox>
+                <TextManito>당신의 마니또는...</TextManito>
+                <Basic text={manitoTo}/>
+              </ManitoButtonBox>
+              <ManitoButtonBox>
+                <TextManito>내 맞니또는...</TextManito>
+                <Basic text="?"/>
+              </ManitoButtonBox>
+            </ManitoButtonContainer>
+          ) :
+          (
+            <Basic text={manitoFrom}/>
+          )
+        }
       </PageContainer>
     </ContainerBackground>
   );

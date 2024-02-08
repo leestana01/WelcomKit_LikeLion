@@ -107,7 +107,7 @@ export default function ProfileEditForm({$name, $teamId, $part, $department, $te
         <RowContainer>
           <FormGroup>
             <Label>내 팀원들에게 전할 메시지</Label>
-            <TextArea rows="2" value={teamMessage} onChange={(e) => setTeamMessage(e.target.value)} />
+            <TextArea rows="3" value={teamMessage} onChange={(e) => setTeamMessage(e.target.value)} />
           </FormGroup>
           <SubmitButton type="submit">프로필 정보 수정</SubmitButton>
         </RowContainer>

@@ -86,9 +86,9 @@ export default function Component() {
                     </TitleColumn>
                     <BigRow>
                         <CategoryColumn>
-                            <Basic text='프론트엔드' $onClick={() => setIsWho(1)} />
-                            <Basic text='백엔드' $onClick={() => setIsWho(2)} />
-                            <Basic text='기획 & 디자인' $onClick={() => setIsWho(3)} />
+                            <Basic text='프론트엔드' $onClick={() => setIsWho(1)} $cursor="pointer"/>
+                            <Basic text='백엔드' $onClick={() => setIsWho(2)} $cursor="pointer"/>
+                            <Basic text='기획 & 디자인' $onClick={() => setIsWho(3)} $cursor="pointer"/>
 
                         </CategoryColumn>
                         <RoadMapContainer isWho={isWho} /> {/* 상태를 props로 전달할 수 있음!! */}

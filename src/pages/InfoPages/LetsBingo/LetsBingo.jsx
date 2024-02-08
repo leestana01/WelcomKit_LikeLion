@@ -119,8 +119,8 @@ export default function Component() {
                     </Text>
 
                     <CustomRow>
-                        <Basic text='빙고판으로 이동' $onClick={() => handleClick()} />
-                        <Basic text='자세한 설명 보기' $onClick={() => handleExplainClick()} />
+                        <Basic text='빙고판으로 이동' $onClick={() => handleClick()} $cursor="pointer"/>
+                        <Basic text='자세한 설명 보기' $onClick={() => handleExplainClick()} $cursor="pointer"/>
                     </CustomRow>
                 </CustomColumn>
                 <CustomCenter>
