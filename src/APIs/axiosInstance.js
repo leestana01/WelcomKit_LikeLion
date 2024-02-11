@@ -2,9 +2,6 @@ import axios from 'axios';
 
 const axiosInstance = axios.create({
     baseURL: process.env.REACT_APP_SERVER,
-    headers: {
-        Authorization: '',
-    },
     timeout: 5000, // 10000ms = 10초
 });
     
