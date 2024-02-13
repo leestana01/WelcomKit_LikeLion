@@ -33,29 +33,7 @@ const LetterItem = styled.li`
 
 export default function LetterList({$max_height, $letterType}) {
     const [letters, setLetters] = useState([]);
-    // const Letters = [
-    //     {
-    //         "message": "안녕하세요 테스트님! 테스트님의 열정에 감탄했습니다. 앞으로 멋사에서 테스트님이 발휘하실 테스트 정신, 많이 기대하겠습니다!",
-    //     },
-    //     {
-    //         "message": "예시 메시지입니다!",
-    //     },
-    //     {
-    //         "message": "예시 메시지 2 입니다!!!!!!!!!!!!!!!!!!!",
-    //     },
-    //     {
-    //         "message": "예시 메시지 2 입니다!!!!!!!!!!!!!!!!!!!",
-    //     },
-    //     {
-    //         "message": "예시 메시지 2 입니다!!!!!!!!!!!!!!!!!!!",
-    //     },
-    //     {
-    //         "message": "예시 메시지 2 입니다!!!!!!!!!!!!!!!!!!!",
-    //     },
-    //     {
-    //         "message": "예시 메시지 2 입니다!!!!!!!!!!!!!!!!!!!",
-    //     }
-    // ]
+    
     useEffect(()=>{
         const fetchFunction = $letterType === "mine" ? getManitoLettersByMe : getManitoLetters;
         const fetchLetters = async () => {
@@ -67,6 +45,11 @@ export default function LetterList({$max_height, $letterType}) {
 
     return(
         <LetterListContainer $max_height={$max_height}>
+            {
+                (letters.length === 0) && (
+                    <p>아직 맞니또로부터 받은 메시지가 없어요!</p>
+                )
+            }
             {letters.map((letter, index) => (
                 <LetterItem key={index}>{letter.message}</LetterItem>
             ))}

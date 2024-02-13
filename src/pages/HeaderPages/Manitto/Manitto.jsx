@@ -141,12 +141,12 @@ export default function Component() {
               </ManitoButtonBox>
               <ManitoButtonBox>
                 <TextManito>내 맞니또는...</TextManito>
-                <Basic text="?"/>
+                <Basic text={manitoFrom}/>
               </ManitoButtonBox>
             </ManitoButtonContainer>
           ) :
           (
-            <Basic text={manitoFrom}/>
+            <Basic text={"게임 시작 전..."}/>
           )
         }
       </PageContainer>

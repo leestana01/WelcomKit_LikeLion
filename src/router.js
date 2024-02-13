@@ -22,6 +22,7 @@ import ManagerHome from "./pages/ManagerPage/Contents/Home/ManagerHome";
 import Letters from "./pages/ManagerPage/Contents/Letters/Letters";
 import MyInfo from "./pages/ManagerPage/Contents/MyInfo/MyInfo";
 import MyTeam from "./pages/ManagerPage/Contents/MyTeam/MyTeam";
+import HandleManagers from "./pages/ManagerPage/Contents/HandleManagers/HandleManagers";
 
 export default createBrowserRouter([
     {
@@ -108,6 +109,10 @@ export default createBrowserRouter([
             {
                 path: "team",
                 element: <MyTeam/>
+            },
+            {
+                path: "handle-managers",
+                element: <HandleManagers/>
             }
         ]
     },

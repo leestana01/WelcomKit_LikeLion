@@ -30,7 +30,7 @@ export default function CardBox() {
     return (
         <ContainerBetween>
             <RowContainer>
-                <HomeCard $number={`${userCount.managers}명`} $title="운영진" $color="#1d62f0">
+                <HomeCard $number={`${userCount.managers}명`} $title="운영진" $color="#1d62f0" $managable={"/managerpage/handle-managers"}>
                     <FaUsers size={50} color={"#1d62f0"}/>
                 </HomeCard>
 

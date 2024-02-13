@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import ContainerCard from '../../../Components/ContainerCard';
+import { useNavigate } from 'react-router-dom';
 
 const IconContainer = styled.div`
     color: ${props => props.$color || "#ff7b00"};
@@ -32,6 +33,9 @@ const UpdateButton = styled.button`
 `;
 
 export default function CardForm({ $number, $title, $color, $managable, children }){
+
+  const navigate = useNavigate();
+
   return (
     <ContainerCard>
       <IconContainer $color={$color}>
@@ -40,7 +44,7 @@ export default function CardForm({ $number, $title, $color, $managable, children
       <NumberDisplay>{$number||"0"}</NumberDisplay>
       <TextDisplay>{$title||"오류"}</TextDisplay>
       {
-        $managable && <UpdateButton $color={$color}>{$title} 관리</UpdateButton>
+        $managable && <UpdateButton $color={$color} onClick={() => navigate($managable)}>{$title} 관리</UpdateButton>
       }
     </ContainerCard>
   );

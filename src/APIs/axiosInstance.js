@@ -6,8 +6,11 @@ const axiosInstance = axios.create({
 });
     
 axiosInstance.interceptors.request.use(
-    (config) => {
-        config.headers['Authorization'] = sessionStorage.getItem('jwtToken');
+    config => {
+        const token = sessionStorage.getItem('jwtToken');
+        if (token) {
+            config.headers['Authorization'] = token;
+        }
         return config;
     },
     (err) => {
