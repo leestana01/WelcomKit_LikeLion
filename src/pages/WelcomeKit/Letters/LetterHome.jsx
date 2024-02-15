@@ -32,7 +32,7 @@ const TextError = styled(TextHeader)`
     color: orange;
 `
 
-export default function Component(){
+export default function Component() {
     const [letters, setLetters] = useState([]);
 
     useEffect(() => {
@@ -41,7 +41,7 @@ export default function Component(){
             setLetters(response);
         }
         fetchLetters();
-    },[])
+    }, [])
 
     return (
         <ContainerBackground><PageContainer>
@@ -50,19 +50,19 @@ export default function Component(){
             {
                 letters.length === 0 &&
                 <>
-                <TextError><br/>편지를 읽는데 실패하였습니다.</TextError>
-                <TextError>본인이 아기사자(신입 부원)임에도</TextError>
-                <TextError>이 메시지가 뜬다면 즉시 신고 바랍니다.</TextError>
+                    <TextError><br />편지를 읽는데 실패하였습니다.</TextError>
+                    <TextError>본인이 아기사자(신입 부원)임에도</TextError>
+                    <TextError>이 메시지가 뜬다면 즉시 신고 바랍니다.</TextError>
                 </>
             }
             <GridWidget>
                 {
                     letters.map(letter => {
-                        return <Letter 
-                        $name={letter.senderName}
-                        $part={letter.part}
-                        $message={letter.message}
-                        $src={letter.profileMiniUrl ? `${process.env.REACT_APP_SERVER}${letter.profileMiniUrl}`: "/img/likelion_icon.png"}
+                        return <Letter
+                            $name={letter.senderName}
+                            $part={letter.part}
+                            $message={letter.message}
+                            $src={letter.profileMiniUrl ? `${process.env.REACT_APP_SERVER}${letter.profileMiniUrl}` : "/img/likelion_icon.png"}
                         />
                     })
                 }
