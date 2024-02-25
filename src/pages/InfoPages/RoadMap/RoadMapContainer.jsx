@@ -32,7 +32,7 @@ gap: 10px;
 const RoadContainer = styled.div`
     flex: 2;
     width: 100%;
-    height: 400px;
+    height: 600px;
     margin-right: 30px;
     background-color: #010A13;
     border: 2px solid #372C16;
