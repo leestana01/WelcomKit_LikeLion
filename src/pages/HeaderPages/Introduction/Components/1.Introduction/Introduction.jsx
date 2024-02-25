@@ -12,7 +12,6 @@ const CustomStyledImg = styled.img`
 `;
 
 export default function Introduction() {
-
     return (
         <ContainerColumn>
             <Title>LIKE LION HUFS global 소개</Title>
@@ -22,11 +21,7 @@ export default function Introduction() {
                     {section[1].map((paragraph, pIndex) => (
                         <TextP key={pIndex}>{paragraph}</TextP>
                     ))}
-                    {index === 0 && <CustomStyledImg src={'/img/intro_img2.jpg'} width='50%' height='30vh' />}
-                    {index === 1 && <CustomStyledImg src={'/img/intro_img4.jpg'} width='50%' height='30vh' />}
-                    {index === 2 && <CustomStyledImg src={'/img/intro_img1.jpg'} width='50%' height='30vh' />}
-                    {index === 3 && <CustomStyledImg src={'/img/intro_img3.jpg'} width='50%' height='30vh' />}
-                    {index === 4 && <CustomStyledImg src={'/img/intro_img5.jpg'} width='50%' height='30vh' />}
+                    <CustomStyledImg src={section[2]} width='50%' height='30vh' />
                 </div>
             ))}
         </ContainerColumn>
