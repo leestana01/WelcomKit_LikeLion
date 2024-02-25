@@ -19,7 +19,7 @@ const PageContainer = styled(ContainerCenter)`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 30px;
+    gap: 10px;
     overflow: auto;
 
     &::-webkit-scrollbar {
@@ -60,26 +60,33 @@ const Line = styled.div`
 
 const CustomRow = styled.div`
 display: flex;
+align-items: center;
+justify-content: center;
+
 flex-direction: row;
 gap: 40px;
+width: 100%;
 `;
 
 const CustomColumn = styled.div`
 display: flex;
 flex-direction: column;
 gap: 80px;
+width: 100%;
 `;
 
 const MiniColumn = styled.div`
 display: flex;
 flex-direction: column;
 gap: 40px;
+width: 100%;
 `;
 
 const CustomCenter = styled.div`
 display: flex;
 align-items: center;
 justify-content: center;
+width: 100%;
 `;
 
 const Top = styled.div`
@@ -89,6 +96,7 @@ align-items: center;
 justify-content: center;
 height: 40vh;
 gap: 40px;
+width: 100%;
 `
 
 const ContentContainer = styled.div`
@@ -96,10 +104,19 @@ const ContentContainer = styled.div`
 `;
 
 const Item = styled.h1`
-font-size: 30px;
-font-family: 'LINE-Bd';
-color: #3B454E;
-text-align: left;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    font-family: 'LINE-Bd';
+    color: #3B454E;
+    text-align: left;
+    flex: 1;
+
+    &:hover {
+        color: #F0F0F0;
+        cursor: ${props => props.$cursor ? 'dafault' : "pointer"};
+    }
 `;
 
 const Prepare = styled.h1`
@@ -109,7 +126,7 @@ color: #3B454E;
 text-align: center;
 `;
 
-export default function Component() {
+export default function Component($cursor) {
 
     //const [isWhat, setIsWhat] = useState(1);
     const [isWhat, setIsWhat] = useState(null);
@@ -130,11 +147,11 @@ export default function Component() {
                             <MiniColumn>
                                 <Prepare>[ 아래의 세가지 탭을 하나씩 클릭하여 멋쟁이 사자가 될 준비를 마치세요. ]</Prepare>
                                 <CustomRow>
-                                    <Item onClick={handleLionMindClick}>사자들의 행동 강령 보기</Item>
-                                    <Item>|</Item>
-                                    <Item onClick={handleSkillClick}>초원에서 생존하기 위한 스킬</Item>
-                                    <Item>|</Item>
-                                    <Item onClick={handleLionSpaceClick}>사자들의 서식지 확인하기</Item>
+                                    <Item onClick={handleLionMindClick} cursor='pointer'>사자들의 행동 강령 보기</Item>
+
+                                    <Item onClick={handleSkillClick} cursor='pointer'>초원에서 생존하기 위한 스킬</Item>
+
+                                    <Item onClick={handleLionSpaceClick} cursor='pointer'>사자들의 서식지 확인하기</Item>
                                 </CustomRow>
                             </MiniColumn>
                         </CustomCenter>

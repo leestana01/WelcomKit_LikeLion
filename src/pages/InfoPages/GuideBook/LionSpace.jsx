@@ -19,9 +19,9 @@ const PageContainer = styled(ContainerCenter)`
 `
 
 const Container = styled.div`
-    width: 90%;
+    width: 100%;
     min-width: 900px;
-    height: 300px;
+    height: 400px;
     background-color: #010A13;
     border: 2px solid #372C16;
     padding: 30px;
@@ -76,12 +76,10 @@ display: inline-block; /* display 속성 조정 */
 `;
 
 const Detail = styled.a`
-background: linear-gradient(to bottom, #C8A96C, #7B5D28);
--webkit-background-clip: text;
--webkit-text-fill-color: transparent;
-line-height: 30px; /* 라인 높이 조정 */
-padding-top: 2px; /* 위쪽에 약간의 패딩 추가 */
-display: inline-block; /* display 속성 조정 */
+color: white;
+font-size: 20px;
+font-family: 'LINE-Bd';
+line-height: 25px;
 `;
 
 export default function Component() {

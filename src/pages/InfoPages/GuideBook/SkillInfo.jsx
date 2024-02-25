@@ -64,12 +64,10 @@ display: inline-block; /* display 속성 조정 */
 `;
 
 const Detail = styled.a`
-background: linear-gradient(to bottom, #C8A96C, #7B5D28);
--webkit-background-clip: text;
--webkit-text-fill-color: transparent;
-line-height: 23px; /* 라인 높이 조정 */
-padding-top: 2px; /* 위쪽에 약간의 패딩 추가 */
-display: inline-block; /* display 속성 조정 */
+color: white;
+font-size: 20px;
+font-family: 'LINE-Bd';
+line-height: 25px;
 `;
 
 const Star = styled.div`

@@ -18,9 +18,9 @@ const PageContainer = styled(ContainerCenter)`
 `
 
 const Container = styled.div`
-    width: 90%;
+    width: 100%;
     min-width: 900px;
-    height: 300px;
+    height: 400px;
     background-color: #010A13;
     border: 2px solid #372C16;
     padding: 30px;
