@@ -4,11 +4,11 @@ import ForCompleteTexts from './ForCompleteTexts';
 import { TextH1, TextP } from '../Text';
 import Title from '../Title';
 
-export default function ForComplete(){
+export default function ForComplete() {
 
-    return(
+    return (
         <ContainerColumn>
-            <Title>우리멋쟁이사자처럼 12기의 수료 조건은 어떻게 되나요?</Title>
+            <Title>LIKE LION HUFS global의 수료 조건</Title>
 
             {ForCompleteTexts.map((section, index) => (
                 <div key={index}>

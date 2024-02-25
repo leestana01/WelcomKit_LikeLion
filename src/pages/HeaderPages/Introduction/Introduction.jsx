@@ -43,6 +43,26 @@ const Content = styled.div`
   background: linear-gradient(to bottom, #020d16, #07222f);
   color: white;
   padding: 40px;
+
+  overflow: auto;
+
+  &::-webkit-scrollbar {
+      width: 10px;
+      border-radius: 20px;
+      margin: 5px;
+  }
+
+  &::-webkit-scrollbar-track {
+      background: transparent;
+      border-radius: 20px;
+      margin: 5px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+      background: linear-gradient(to bottom, #C8A96C, #7B5D28);
+      border-radius: 20px;
+      margin: 5px;
+  }
 `;
 
 const Line = styled.div`

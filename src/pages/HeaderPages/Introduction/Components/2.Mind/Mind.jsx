@@ -4,11 +4,11 @@ import MindTexts from './MindTexts';
 import { TextH1, TextP } from '../Text';
 import Title from '../Title';
 
-export default function Mind(){
+export default function Mind() {
 
-    return(
+    return (
         <ContainerColumn>
-            <Title>멋쟁이사자처럼은 어떤 가치관을 가지고 있나요?</Title>
+            <Title>Mind of LIKE LION HUFS global</Title>
             {MindTexts.map((section, index) => (
                 <div key={index}>
                     <TextH1>{section[0]}</TextH1>

@@ -36,16 +36,16 @@ const Event = styled.a`
     text-align: center;
 `;
 
-export default function Course(){
+export default function Course() {
 
-    return(
+    return (
         <ContainerColumn>
-            <Title>우리멋쟁이사자처럼 12기의 1년 과정은 어떻게 되나요?</Title>
-            <TextH1>여러분이 가장 먼저 수행할 활동은 '미니 프로젝트' 입니다.</TextH1>
+            <Title>아기사자로서의 1년 과정</Title>
+            <TextH1>❐ 여러분이 가장 먼저 수행할 활동은 '미니 프로젝트' 입니다.</TextH1>
             <TextP>운영진과 아기사자가 골고루 섞여 팀이 구성되며,</TextP>
             <TextP>짧은 기간동안 완성할만한 간단한 아이디어를 프로그램으로 구현 후 발표하시게 됩니다.</TextP>
-            
-            <TextH1>미니 프로젝트 이후의 활동은 아래와 같습니다.</TextH1>
+
+            <TextH1>❐ 미니 프로젝트 이후의 활동은 아래와 같습니다.</TextH1>
 
             <Line>
                 {Array.from({ length: 7 }).map((_, index) => (
@@ -53,18 +53,18 @@ export default function Course(){
                 ))}
             </Line>
             <ContainerRow>
-                    <Event>중간고사 기간<br />(정기세션 휴식)</Event>
-                    <Event>아이디어톤</Event>
-                    <Event>기말고사 기간<br />(정기세션 휴식)</Event>
-                    <Event>종강</Event>
-                    <Event>중앙 해커톤</Event>
-                    <Event>개강</Event>
-                    <Event>2학기 프로젝트<br />또는 스터디</Event>
+                <Event>중간고사 기간<br />(정기세션 휴식)</Event>
+                <Event>아이디어톤</Event>
+                <Event>기말고사 기간<br />(정기세션 휴식)</Event>
+                <Event>종강</Event>
+                <Event>중앙 해커톤</Event>
+                <Event>개강</Event>
+                <Event>2학기 프로젝트<br />또는 스터디</Event>
             </ContainerRow>
-            
-            <br/>
+
+            <br />
             <TextP>여러분은 위의 주요 행사와 정기세션을 병행하며 멋사를 활동하시게 됩니다!</TextP>
-            
+
         </ContainerColumn>
     )
 }
