@@ -71,15 +71,6 @@ export default function Component({ setIsWhat }) {
                     </Skill>
                 </SkillContainer>
 
-                <SkillContainer onClick={() => setIsWhat(2)}>
-                    <ImageContainer>
-                        <StyledImg src={'/img/icon_slack.png'} width='200px' height='200px' />
-                    </ImageContainer>
-                    <Skill>
-                        Slack
-                    </Skill>
-                </SkillContainer>
-
                 <SkillContainer onClick={() => setIsWhat(3)}>
                     <ImageContainer>
                         <StyledImg src={'/img/notion.png'} width='200px' height='200px' />

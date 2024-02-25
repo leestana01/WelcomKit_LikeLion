@@ -113,19 +113,7 @@ export default function Component({ isWhat }) {
 
             </InfoContainer>)}
 
-            {isWhat === 2 && (<InfoContainer>
-                <CustomColumn>
-                    <CustomRow>
-                        <CustomCenter>
-                            <Skill>중요도:</Skill>
-                        </CustomCenter>
-                        <Star />
-                        <Star />
-                    </CustomRow>
-                    <Detail>멋사 전체 채널에 초대되어 다양한 소식을 받아볼 수 있어요.</Detail>
-                </CustomColumn>
 
-            </InfoContainer>)}
 
             {isWhat === 3 && (<InfoContainer>
                 <CustomColumn>
@@ -138,7 +126,7 @@ export default function Component({ isWhat }) {
                         <Star />
                         <Star />
                     </CustomRow>
-                    <Detail>프로젝트 회의록을 작성하고, 과제를 제출하는 등 여러가지 중요한 소식을 공유하는 곳이에요.</Detail>
+                    <Detail>프로젝트 회의록을 작성하고, 과제를 확인 및 제출하는 등 멋사 활동 진행 상황을 공유하는 곳이에요.</Detail>
                 </CustomColumn>
 
             </InfoContainer>)}
@@ -167,7 +155,8 @@ export default function Component({ isWhat }) {
                         <Star />
                         <Star />
                     </CustomRow>
-                    <Detail>멋사 전체 공지와 소통이 이루어지는 곳이에요.</Detail>
+                    <Detail>멋사 전체 공지와 소통이 이루어지는 곳이에요.<br />
+                        멋사 사람들과 모각코(모여서 각자 떠들며 코딩)가 진행되는 곳이기도 해요.</Detail>
                 </CustomColumn>
 
             </InfoContainer>)}
