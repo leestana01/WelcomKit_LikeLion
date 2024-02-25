@@ -17,12 +17,12 @@ const LetterForm = styled(ContainerRow)`
     justify-content: start;
     gap: 2rem;
 
-    width: calc(100% - 40px);
-    height: ${(props) => (props.isFlipped ? '25vh' : '25vh')}; //isFlipped 상태에 따라 높이 조정 가능하게 만들어둠
+    width: calc(100% - 45px);
+    height: 150px;
     margin-right: 30px;
     background-color: #061627;
     border: 2px solid #372C16;
-    padding: 10px;
+    padding: 20px;
 
     overflow: hidden;
     perspective: 1000px;
@@ -51,19 +51,42 @@ const LetterFront = styled(ContainerColumn)`
 `;
 
 const LetterBack = styled.div`
-    justify-content: center;
+    justify-content: space-between;
     gap: 2rem;
     height: 100%;
     backface-visibility: hidden;
     transform: rotateY(180deg);
+
     display: flex;
     align-items: center;
+
     color: white;
     position: absolute;
     width: 100%;
 `;
 
-export default function Letter({ $name, $part, $message, $src, $bigsrc }) {
+const TextForm = styled(ContainerColumn)`
+    justify-content: start;
+    gap: 2rem;
+    height: 100%;
+    display: flex;
+    flex: 2;
+`
+
+const GridImg = styled.img`
+    height: 100%;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    flex: 1;
+`
+
+const GirdText = styled.p`
+    color: ${props => props.$color};
+    font-family: 'LINE-Bd', sans-serif;
+    font-size: ${props => props.$font_size || "1.5rem"};
+`
+
+export default function Letter({ $name, $part, $message, $src }) {
     const [isFlipped, setIsFlipped] = useState(false);
 
     //useEffect를 사용하여 isFlipped 상태가 변경될 때마다 크기를 동적으로 조절하도록 설계
@@ -72,14 +95,20 @@ export default function Letter({ $name, $part, $message, $src, $bigsrc }) {
         <LetterForm onClick={() => setIsFlipped(!isFlipped)} isFlipped={isFlipped}>
             <LetterFlipper isFlipped={isFlipped}>
                 <LetterFront>
-                    <img src={$src || "/img/likelion_icon.png"} alt="Front" style={{ height: '100%', aspectRatio: '1 / 1' }} />
-                    <div>
-                        <p style={{ color: 'white', fontFamily: "'LINE-Bd', sans-serif", fontSize: '1.5rem' }}>{$name}</p>
-                        <p>{$part}</p>
-                    </div>
+
+                    <GridImg src={"/img/cover.png"} />
                 </LetterFront>
                 <LetterBack>
-                    <p>{$message}</p>
+                    <GridImg src={$src || "/img/likelion_icon.png"} />
+                    <TextForm>
+                        <div>
+                            <GirdText>{$name}</GirdText>
+                            <p>{$part}</p>
+                        </div>
+                        <div>
+                            <p>{$message}</p>
+                        </div>
+                    </TextForm>
                 </LetterBack>
             </LetterFlipper>
         </LetterForm>
