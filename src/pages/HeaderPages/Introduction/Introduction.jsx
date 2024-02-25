@@ -42,7 +42,13 @@ const Content = styled.div`
   width: calc(100% - 540px);
   background: linear-gradient(to bottom, #020d16, #07222f);
   color: white;
-  padding: 20px;
+  padding: 40px;
+`;
+
+const Line = styled.div`
+background-color: #0A2F3F;
+width: 1px;
+height: 100%;
 `;
 
 const App = () => {
@@ -63,6 +69,7 @@ const App = () => {
         <Button $isActive={activeButton === "ForComplete"} onClick={() => handleButtonClick("ForComplete", <ForComplete />)}>수료 조건</Button>
         <Button $isActive={activeButton === "SNS"} onClick={() => handleButtonClick("SNS", <SNS />)}>SNS</Button>
       </Sidebar>
+      <Line />
       <Content>
         {content}
       </Content>

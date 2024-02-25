@@ -4,11 +4,11 @@ import IntroductionTexts from './IntroductionTexts';
 import { TextH1, TextP } from '../Text';
 import Title from '../Title';
 
-export default function Introduction(){
+export default function Introduction() {
 
-    return(
+    return (
         <ContainerColumn>
-            <Title>우리멋쟁이사자처럼 12기의 수료 조건은 어떻게 되나요?</Title>
+            <Title>LIKE LION HUFS global 소개</Title>
             {IntroductionTexts.map((section, index) => (
                 <div key={index}>
                     <TextH1>{section[0]}</TextH1>
