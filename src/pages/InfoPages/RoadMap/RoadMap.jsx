@@ -44,7 +44,7 @@ const BigColumn = styled.div`
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 150px;
+    gap: 10px;
 `
 
 const Line = styled.div`
@@ -54,8 +54,7 @@ const Line = styled.div`
 `;
 
 const BigRow = styled.div`
-    flex: 2;
-    height: 100%;
+    flex: 1;
     display: flex;
     flex-direction: row;
 `;
@@ -68,8 +67,26 @@ const CategoryColumn = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 40px;
+    gap: 1rem;
 `
+
+const Tap = styled.button`
+background-color: transparent;
+border: none;
+display: flex;
+align-items: center;
+justify-content: center;
+cursor: ${props => props.$cursor ? "pointer" : null};
+&:hover {
+    background-image: linear-gradient(to right, #8F6E2E, transparent);
+}
+color: #CABB8F;
+font-size: 30px;
+font-family: 'LINE-Bd';
+
+width: 100%;
+height: 90px;
+`;
 
 export default function Component() {
 
@@ -86,9 +103,9 @@ export default function Component() {
                     </TitleColumn>
                     <BigRow>
                         <CategoryColumn>
-                            <Basic text='프론트엔드' $onClick={() => setIsWho(1)} $cursor="pointer"/>
-                            <Basic text='백엔드' $onClick={() => setIsWho(2)} $cursor="pointer"/>
-                            <Basic text='기획 & 디자인' $onClick={() => setIsWho(3)} $cursor="pointer"/>
+                            <Tap onClick={() => setIsWho(1)} cursor="pointer">프론트엔드</Tap>
+                            <Tap onClick={() => setIsWho(2)} cursor="pointer">백엔드</Tap>
+                            <Tap onClick={() => setIsWho(3)} cursor="pointer">기획/디자인</Tap>
 
                         </CategoryColumn>
                         <RoadMapContainer isWho={isWho} /> {/* 상태를 props로 전달할 수 있음!! */}
