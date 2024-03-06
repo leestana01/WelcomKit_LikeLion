@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import getBabyLions from '../../../../APIs/get/getBabyLions';
 import createWelcomeLetter from '../../../../APIs/post/createWelcomeLetter';
 import partType from '../../../../partType';
+import getWelcomeLetter from '../../../../APIs/get/getWelcomeLetter';
 
 const UserListContainer = styled.div`
   padding: 20px;
@@ -53,6 +54,7 @@ const ModalBackground = styled.div`
 `;
 
 const ModalContent = styled.div`
+  position: relative;
   background-color: white;
   padding: 20px;
   border-radius: 4px;
@@ -70,8 +72,9 @@ const ModalCloseButton = styled.button`
   cursor: pointer;
 `;
 
-const TextInput = styled.input`
+const TextInput = styled.textarea`
   width: calc(100% - 20px);
+  height: 4rem;
   padding: 10px;
   margin-bottom: 20px;
   border: 1px solid #ccc;
@@ -99,6 +102,20 @@ export default function Letters() {
     }
     fetchBabyLions();
   }, [])
+
+  useEffect(() => {
+    console.table(showModal)
+    if (showModal.open && showModal.isWritten){
+      const fetchMessage = async () => {
+        const response = await getWelcomeLetter(showModal.targetId);
+        setMessage(response.message);
+      }
+      fetchMessage();
+    }
+    if (!showModal.open){
+      setMessage(null);
+    }
+  }, [showModal])
 
   const handleMessageSubmit = async () => {
     if (showModal.targetId) {
@@ -136,7 +153,7 @@ export default function Letters() {
                 <UserCell>
                     <Button
                         $background={user.messageWritten ? "red" : null}
-                        onClick={() => setShowModal({ open: true, targetId: user.id })}>
+                        onClick={() => setShowModal({ open: true, targetId: user.id, isWritten: user.messageWritten })}>
                             {user.messageWritten ? '수정하기' : '작성하기'}
                     </Button>
                 </UserCell>
