@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import getManagersInfo from '../../../../APIs/get/getManagersInfo';
-import { putManagerInfo } from '../../../../APIs/put/updateUserInfo';
+import getBabyLionsInfo from '../../../../APIs/get/getBabyLionsInfo';
+import { putBabyLionInfo } from '../../../../APIs/put/updateUserInfo';
+import partTypes from '../../../../partType';
 
 const Table = styled.table`
-    width: 30rem;
+    width: 50rem;
     border-collapse: collapse;
 `;
 
@@ -29,6 +30,12 @@ const Select = styled.select`
     border:none;
 `;
 
+const Input = styled.input`
+    width: calc(100% - 10px);
+    height: calc(100% - 10px);
+    border: 0;
+`;
+
 const Button = styled.button`
     padding: 10px;
     background-color: blue;
@@ -38,18 +45,20 @@ const Button = styled.button`
     margin-top: 10px;
 `;
 
-const UpdateManagerForm = () => {
-    const [managers, setManagers] = useState([]);
+
+// 변수명 manager -> babylion으로 바꾸려고 했는데 너무 많아서 귀찮아서 포기
+const UpdateBabyLionForm = () => {
+    const [babylions, setBabyLions] = useState([]);
     const [selectedManager, setSelectedManager] = useState({});
     
     useEffect(() => {
-        const fetchManagers = async () => {
-            const response = await getManagersInfo();
+        const fetchBabyLions = async () => {
+            const response = await getBabyLionsInfo();
             console.table(response);
-            setManagers(response);
+            setBabyLions(response);
         };
 
-        fetchManagers();
+        fetchBabyLions();
     }, []);
 
     const handleChange = (e, managerId) => {
@@ -63,23 +72,25 @@ const UpdateManagerForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const updates = Object.entries(selectedManager).map(([managerId, changes]) => {
-            const originalManager = managers.find(manager => manager.id === parseInt(managerId));
-            if (!originalManager) {
+            const originalData = babylions.find(manager => manager.id === parseInt(managerId));
+            if (!originalData) {
                 console.error(`${managerId} : 유저가 발견되지 않았습니다.`);
                 return null;
             }
-            const teamId = changes.teamId ? parseInt(changes.teamId) : originalManager.teamId;
-            const isTeamLeader = changes.teamLeader ? changes.teamLeader === "true" : originalManager.teamLeader;
+            const teamId = changes.teamId ? parseInt(changes.teamId) : originalData.teamId;
+            const partType = changes.partType ? changes.partType : originalData.partType;
+            const department = changes.department ? changes.department : originalData.department;
             
             return {
-                id: originalManager.id,
+                id: originalData.id,
                 teamId: teamId,
-                teamLeader: isTeamLeader,
+                partType: partType,
+                department: department,
             };
         }).filter(update => update !== null);
 
         console.table(updates);
-        await putManagerInfo(updates);
+        await putBabyLionInfo(updates);
         alert('업데이트 완료');
         window.location.reload();
     };
@@ -91,11 +102,12 @@ const UpdateManagerForm = () => {
                     <tr>
                         <Th>이름</Th>
                         <Th>팀</Th>
-                        <Th>팀장 여부</Th>
+                        <Th>파트</Th>
+                        <Th>학과</Th>
                     </tr>
                 </thead>
                 <tbody>
-                    {managers.map((manager) => (
+                    {babylions.map((manager) => (
                         <tr key={manager.id}>
                             <Td>{manager.name}</Td>
                             <Td>
@@ -111,13 +123,22 @@ const UpdateManagerForm = () => {
                             </Td>
                             <Td>
                                 <Select
-                                    name="teamLeader"
-                                    value={selectedManager[manager.id]?.teamLeader || manager.teamLeader}
+                                    name="partType"
+                                    value={selectedManager[manager.id]?.partType || manager.partType}
                                     onChange={(e) => handleChange(e, manager.id)}
                                 >
-                                    <option value="true">예</option>
-                                    <option value="false">아니오</option>
+                                    {Object.entries(partTypes).map(([key, value]) => (
+                                        <option key={key} value={key}>{value}</option>
+                                    ))}
                                 </Select>
+                            </Td>
+                            <Td>
+                                <Input
+                                    name="department"
+                                    placeholder="학과 입력"
+                                    value={selectedManager[manager.id]?.department || manager.department}
+                                    onChange={(e) => handleChange(e, manager.id)}
+                                />
                             </Td>
                         </tr>
                     ))}
@@ -128,4 +149,4 @@ const UpdateManagerForm = () => {
     );
 };
 
-export default UpdateManagerForm;
+export default UpdateBabyLionForm;

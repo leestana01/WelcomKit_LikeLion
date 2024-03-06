@@ -47,7 +47,13 @@ export default function LetterList({$max_height, $letterType}) {
         <LetterListContainer $max_height={$max_height}>
             {
                 (letters.length === 0) && (
-                    <p>아직 맞니또로부터 받은 메시지가 없어요!</p>
+                    <p>
+                        {
+                            $letterType === "mine" ?
+                            "아직 작성한 편지가 없어요!" :
+                            "아직 마니또로부터 받은 메시지가 없어요!"
+                        }
+                    </p>
                 )
             }
             {letters.map((letter, index) => (

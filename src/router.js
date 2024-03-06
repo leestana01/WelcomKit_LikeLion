@@ -23,6 +23,7 @@ import Letters from "./pages/ManagerPage/Contents/Letters/Letters";
 import MyInfo from "./pages/ManagerPage/Contents/MyInfo/MyInfo";
 import MyTeam from "./pages/ManagerPage/Contents/MyTeam/MyTeam";
 import HandleManagers from "./pages/ManagerPage/Contents/HandleManagers/HandleManagers";
+import HandleBabyLions from "./pages/ManagerPage/Contents/HandleManagers/HandleBabyLions";
 
 export default createBrowserRouter([
     {
@@ -113,6 +114,10 @@ export default createBrowserRouter([
             {
                 path: "handle-managers",
                 element: <HandleManagers/>
+            },
+            {
+                path: "handle-babylions",
+                element: <HandleBabyLions/>
             }
         ]
     },

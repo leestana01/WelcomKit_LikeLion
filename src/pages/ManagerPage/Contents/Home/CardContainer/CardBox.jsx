@@ -34,7 +34,7 @@ export default function CardBox() {
                     <FaUsers size={50} color={"#1d62f0"}/>
                 </HomeCard>
 
-                <HomeCard $number={`${userCount.babyLions}명`} $title="아기사자" $color="#ff7b00">
+                <HomeCard $number={`${userCount.babyLions}명`} $title="아기사자" $color="#ff7b00" $managable={"/managerpage/handle-babylions"}>
                 <GiLion size={50} color={"#ff7b00"}/>
                 </HomeCard>
             </RowContainer>

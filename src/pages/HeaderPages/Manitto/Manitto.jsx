@@ -114,9 +114,9 @@ export default function Component() {
           (
             <>
             <LetterButtonBox>
-              <TextLetterHeader onClick={() => setView("writeLetter")}>내 마니또에게 편지 쓰기</TextLetterHeader>
+              <TextLetterHeader onClick={() => setView("writeLetter")}>내 맞니또에게 편지 쓰기</TextLetterHeader>
               <TextLetterHeader>|</TextLetterHeader>
-              <TextLetterHeader onClick={() => setView("viewLetters")}>맞니또가 보낸 편지 보기</TextLetterHeader>
+              <TextLetterHeader onClick={() => setView("viewLetters")}>마니또가 보낸 편지 보기</TextLetterHeader>
             </LetterButtonBox>
             <LetterContainer>
               {view === "writeLetter" && <LetterSendContainer><LetterForm /><MyLetters /></LetterSendContainer>}
@@ -136,11 +136,11 @@ export default function Component() {
           (
             <ManitoButtonContainer>
               <ManitoButtonBox>
-                <TextManito>당신의 마니또는...</TextManito>
+                <TextManito>당신의 맞니또는...</TextManito>
                 <Basic text={manitoTo}/>
               </ManitoButtonBox>
               <ManitoButtonBox>
-                <TextManito>내 맞니또는...</TextManito>
+                <TextManito>내 마니또는...</TextManito>
                 <Basic text={manitoFrom}/>
               </ManitoButtonBox>
             </ManitoButtonContainer>

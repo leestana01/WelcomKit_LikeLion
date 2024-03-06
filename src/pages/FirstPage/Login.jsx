@@ -58,6 +58,12 @@ const NameInputForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+  if (window.innerWidth <= 768) {
+    alert('모바일은 접속 불가합니다');
+    return;
+  }
+
     const isSuccess = await login(name, pw); // 로그인 성공 여부 받기
     if (!isSuccess) {
         alert('이름 혹은 비밀번호가 일치하지 않습니다.');

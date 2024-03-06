@@ -75,7 +75,7 @@ export default function Component(){
                             <TeammateForm key={index}>
                                 <Teammate
                                     $name={teammate.name}
-                                    $img={""}
+                                    $img={teammate.imageUrl ? `${process.env.REACT_APP_SERVER}${teammate.imageUrl}` : ""}
                                     $dev={partTypes[teammate.part]}
                                     $description={teammate.teamMessage || "아직 팀 메시지가 입력되지 않음"}/>
                             </TeammateForm>
@@ -94,7 +94,7 @@ export default function Component(){
                             <TeammateForm key={index}>
                                 <Teammate
                                 $name={teammate.name}
-                                $img={""}
+                                $img={teammate.imageUrl ? `${process.env.REACT_APP_SERVER}${teammate.imageUrl}` : ""}
                                 $dev={partTypes[teammate.part]}
                                 $description={teammate.teamMessage || "아직 팀 메시지가 입력되지 않음"}/>
                             </TeammateForm>
