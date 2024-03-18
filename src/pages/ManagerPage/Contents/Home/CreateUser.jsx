@@ -89,15 +89,15 @@ export default function CreateUser() {
     try {
       users.forEach(user => {
         if (!user.name || !user.password) {
-          console.log('사용자 이름 또는 비밀번호가 누락되었습니다.');
+          alert('사용자 이름 또는 비밀번호가 누락되었습니다.');
           return;
         }
         makeUser(user.name, user.password, user.department, user.part, user.team);
         console.log(user.name, user.password, user.department, user.part, user.team);
       });
-      console.log("모든 유저가 성공적으로 생성되었습니다.");
+      alert("모든 유저가 성공적으로 생성되었습니다.");
     } catch (error) {
-      console.error("유저 생성 중 오류가 발생했습니다.", error);
+      alert("유저 생성 중 오류가 발생했습니다.", error);
     }
   };  
 
