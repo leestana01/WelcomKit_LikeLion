@@ -64,6 +64,11 @@ const TextLetterHeader = styled.h2`
   color: lightgray;
   font-family: 'LINE-Bd', sans-serif;
   font-size: 30px;
+  cursor: pointer;
+  &:hover {
+    // background-image: linear-gradient(to top, #8F6E2E, transparent);
+    background: #8F6E2E;
+  }
 `
 
 const TextManito = styled.p`

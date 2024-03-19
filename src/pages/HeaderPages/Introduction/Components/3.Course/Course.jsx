@@ -53,9 +53,9 @@ export default function Course() {
                 ))}
             </Line>
             <ContainerRow>
-                <Event>중간고사 기간<br />(정기세션 휴식)</Event>
+                <Event>미니프로젝트</Event>
                 <Event>아이디어톤</Event>
-                <Event>기말고사 기간<br />(정기세션 휴식)</Event>
+                <Event>발표회</Event>
                 <Event>종강</Event>
                 <Event>중앙 해커톤</Event>
                 <Event>개강</Event>

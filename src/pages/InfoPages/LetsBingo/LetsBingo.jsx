@@ -93,7 +93,7 @@ align-items: center;
 export default function Component() {
 
     const handleClick = () => {
-        window.open("https://github.com/hufslion10th/bingo", "_blank");
+        window.open("https://github.com/hufslion-12th/bingo", "_blank");
     };
 
     const [showExplain, setShowExplain] = useState(false);

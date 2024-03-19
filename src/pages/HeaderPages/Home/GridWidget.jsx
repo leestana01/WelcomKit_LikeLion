@@ -57,15 +57,15 @@ export default function Component() {
             <GridImg src="img/techit.png"/>
             <GirdText $font_size="1.2rem">테킷 강의 무료제공</GirdText>
         </GridItem>
-        <GridItem>
-            <GridImg src="img/gmail.png"/>
-            <GirdText $color="darkorange" $font_size="1.2rem">전용 메일 발급</GirdText>
+        <GridItem $url="true" onClick={()=>{window.open("https://github.com/hufslion-12th")}}>
+            <GridImg src="img/icon_github_black.png"/>
+            <GirdText $color="darkorange" $font_size="1.2rem">우리만의 깃허브</GirdText>
         </GridItem>
       </BottomGrid>
       <BottomGrid>
-        <GridItem $url="true" onClick={()=>{window.open("https://www.notion.so/hufsglobal/HUFS-11-c326686ed051407faca7aedadd7591bb")}}>
+        <GridItem $url="true" onClick={()=>{window.open("https://www.notion.so/hufsglobal/HUFS-12-e23a2e85170c4dca85a689949b424309")}}>
             <GridImg src="img/notion.png"/>
-            <GirdText $font_size="1.2rem">공지를 위한 노션 페이지<br/>(수정 필요. 현재 11기로 안내)</GirdText>
+            <GirdText $font_size="1.2rem">공지를 위한 노션 페이지<br/></GirdText>
         </GridItem>
         <GridItem $url="true" onClick={()=>{window.open("https://app.gather.town/app/wKWe3Hk7uxhS9QSk/Likelion%2010th%20Study")}}>
             <GridImg src="img/gather.png"/>

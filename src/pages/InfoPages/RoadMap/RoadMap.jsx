@@ -71,21 +71,21 @@ const CategoryColumn = styled.div`
 `
 
 const Tap = styled.button`
-background-color: transparent;
-border: none;
-display: flex;
-align-items: center;
-justify-content: center;
-cursor: ${props => props.$cursor ? "pointer" : null};
-&:hover {
-    background-image: linear-gradient(to right, #8F6E2E, transparent);
-}
-color: #CABB8F;
-font-size: 30px;
-font-family: 'LINE-Bd';
+    background-color: transparent;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: ${props => props.$cursor ? "pointer" : null};
+    &:hover {
+        background-image: linear-gradient(to right, #8F6E2E, transparent);
+    }
+    color: #CABB8F;
+    font-size: 30px;
+    font-family: 'LINE-Bd';
 
-width: 100%;
-height: 90px;
+    width: 100%;
+    height: 90px;
 `;
 
 export default function Component() {
