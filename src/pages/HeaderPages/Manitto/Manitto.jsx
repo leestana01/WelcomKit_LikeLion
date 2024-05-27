@@ -9,6 +9,9 @@ import getMyManito from '../../../APIs/get/getMyManito';
 import LetterForm from './LetterForm';
 import LetterList from './LetterList';
 import MyLetters from './MyLetters';
+import getAllUsers from '../../../APIs/get/getAllUsers';
+import selectMyManito from '../../../APIs/post/manito/selectMyManito';
+import ManittoModal from './ManittoModal';
 
 const ContainerCenter = styled.div`
   display: flex;
@@ -18,12 +21,30 @@ const ContainerCenter = styled.div`
   gap: 10px;
   width: 100%;
 `
+// 마니또 선택 기능 추가를 위한 div
+const PageUpperContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+`
 
 const PageContainer = styled(ContainerCenter)`
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 30px;
+`
+
+const ChooseContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+
+  padding-top: 2rem;
+  width: 300px;
+  gap: 10px;
 `
 
 const LetterButtonBox = styled(ContainerRow)`
@@ -75,23 +96,42 @@ const TextManito = styled.p`
   font-size: 1.2rem;
 `
 
-export default function Component() {
-  const [isManitoActive, setIsManitoActive] = useState(false);
+const TextManitoStatus = styled.p`
+  color : ${props => props.$color};
+`
+
+const ButtonContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow-y: scroll;
+`
+
+const DescriptContainer = styled.div`
+    width: 100%;
+    margin-right: 40px;
+    background-color: #010A13;
+    border: 2px solid #372C16;
+    padding: 10px;
+`;
+
+const ButtonForModal = styled(DescriptContainer)`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+
+  &:hover{
+    background: #8F6E2E;
+  }
+`
+
+function ManittoMainFunction({selectedManito, setSelectedManito, isManitoActive}) {
   const [manitoTo, setManitoTo] = useState("");
   const [manitoFrom, setManitoFrom] = useState("");
+  const [isGuessRight, setIsGuessRight] = useState(-2);
   const [view, setView] = useState("");
-
-  useEffect(()=> {
-    const fetchManitoActive = async () => {
-      const response = await getIsManitoActive();
-      if (response === true){
-        setIsManitoActive(true);
-        return;
-      }
-      setIsManitoActive(false);
-    }
-    fetchManitoActive();
-  },[]);
 
   useEffect(()=> {
     if (!isManitoActive){
@@ -102,18 +142,27 @@ export default function Component() {
         const response = await getMyManito();
         setManitoTo(response.manitoTo);
         setManitoFrom(response.manitoFrom);
+        setSelectedManito(response.selectedManito);
+        setIsGuessRight(response.isGuessRight);
       } catch {
         setManitoTo();
         setManitoFrom();
+        setSelectedManito();
+        setIsGuessRight(-2);
       }
     }
     fetchMyManito();
   },[isManitoActive])
 
-  
+  const guessResult = {
+    "-2" : ["white", "로딩중..."],
+    "-1" : ["white","정답 발표 대기중..."],
+    "0" : ["tomato","틀렸습니다"],
+    "1" : ["skyblue","정답입니다!"]
+  }
+
   return (
-    <ContainerBackground $imgSrc={"/img/manito_background.png"}>
-      <PageContainer>
+    <PageContainer>
       {
           isManitoActive &&
           (
@@ -143,10 +192,22 @@ export default function Component() {
               <ManitoButtonBox>
                 <TextManito>당신의 맞니또는...</TextManito>
                 <Basic text={manitoTo}/>
+                {/* <Basic text={"숨겨짐"}/> */}
               </ManitoButtonBox>
               <ManitoButtonBox>
                 <TextManito>내 마니또는...</TextManito>
                 <Basic text={manitoFrom}/>
+                {/* <Basic text={"숨겨짐"}/> */}
+              </ManitoButtonBox>
+              <ManitoButtonBox>
+                <TextManito>내 마니또는 너야!</TextManito>
+                <Basic text={selectedManito}/>
+                {/* <Basic text={"숨겨짐"}/> */}
+                {
+                  selectedManito !== "선택 안됨" && (
+                    <TextManitoStatus $color={guessResult[isGuessRight][0]}>{guessResult[isGuessRight][1]}</TextManitoStatus>
+                  )
+                }
               </ManitoButtonBox>
             </ManitoButtonContainer>
           ) :
@@ -155,6 +216,94 @@ export default function Component() {
           )
         }
       </PageContainer>
+  )
+}
+
+function ChooseManitto({setSelectedManito, isManitoFinished, handleModalToggle}) {
+  const [members, setMembers] = useState([]);
+  
+  useEffect(() => {
+    // setMembers(['없음','개똥이','똥칠이','김철수','나짱구','1','2','3','4'])
+    const getAllMembers = async () => {
+      const response = await getAllUsers();
+      setMembers(response);
+    }
+    getAllMembers();
+  }, [])
+
+  const handleSelectedManito = (member) => {
+    const selectManito = async () => {
+      try {
+        const response = await selectMyManito(member);
+        setSelectedManito(response);
+      }
+      catch {
+        setSelectedManito("오류 발생");
+      }
+    }
+    selectManito();
+  }
+
+  return (
+    <ChooseContainer>
+      <p> 내 마니또는..! </p>
+      <ButtonContainer>
+        {
+          members.map( member => (
+            <Basic 
+              text={member} 
+              key={member} 
+              $cursor={!isManitoFinished} 
+              $onClick={isManitoFinished ? null : () => {
+                handleSelectedManito(member);
+              }} />
+          ))
+        }
+      </ButtonContainer>
+      {
+        isManitoFinished && (
+          <ButtonForModal onClick={handleModalToggle}>
+            <p>마니또가 종료되었습니다.</p>
+            <p>결과를 보려면 여기를 클릭!</p>
+          </ButtonForModal>
+        )
+      }
+    </ChooseContainer>
+  )
+}
+
+export default function Component() {
+  const [selectedManito, setSelectedManito] = useState("-");
+  const [isManitoActive, setIsManitoActive] = useState(false);
+  const [isManitoFinished, setIsManitoFinished] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+
+  useEffect(() => {
+    const fetchManitoActive = async () => {
+      const response = await getIsManitoActive();
+      setIsManitoActive(response.manitoActive);
+      setIsManitoFinished(response.manitoFinished);
+      // setIsManitoFinished(true);
+    };
+    fetchManitoActive();
+  }, []);
+
+  const handleModalToggle = () => setShowModal(!showModal);
+
+  return (
+    <ContainerBackground $imgSrc={"/img/manito_background.png"}>
+      <PageUpperContainer >
+        <ManittoMainFunction 
+          selectedManito={selectedManito} 
+          setSelectedManito={setSelectedManito}
+          isManitoActive={isManitoActive}
+          />
+        <ChooseManitto 
+          setSelectedManito={setSelectedManito}
+          isManitoFinished={isManitoFinished}
+          handleModalToggle={handleModalToggle} />
+      </PageUpperContainer>
+      {showModal && <ManittoModal onClose={handleModalToggle} />}
     </ContainerBackground>
   );
 };

@@ -90,6 +90,12 @@ const TextWritten = styled.p`
   color: ${props => props.$color};
 `
 
+const CharacterCount = styled.p`
+  margin: 0;
+  padding: 0 10px;
+  color: ${props => (props.count > 300 ? 'red' : 'black')};
+`;
+
 export default function Letters() {
   const [users, setUsers] = useState([]);
   const [showModal, setShowModal] = useState({ open: false, targetId: null });
@@ -113,9 +119,16 @@ export default function Letters() {
       fetchMessage();
     }
     if (!showModal.open){
-      setMessage(null);
+      setMessage('');
     }
   }, [showModal])
+
+  const handleMessageChange = (e) => {
+    const inputMessage = e.target.value;
+    if (inputMessage.length <= 300) {
+      setMessage(inputMessage);
+    }
+  };
 
   const handleMessageSubmit = async () => {
     if (showModal.targetId) {
@@ -169,9 +182,10 @@ export default function Letters() {
             <TextInput
               type="text"
               value={message}
-              onChange={(e) => setMessage(e.target.value)}
+              onChange={handleMessageChange}
               placeholder="메시지를 입력하세요"
             />
+            <CharacterCount count={message.length}>{message.length}/300</CharacterCount>
             <Button onClick={handleMessageSubmit}>전송</Button>
           </ModalContent>
         </ModalBackground>

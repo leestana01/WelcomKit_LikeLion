@@ -71,7 +71,13 @@ const TextForm = styled(ContainerColumn)`
     height: 100%;
     display: flex;
     flex: 2;
-`
+`;
+
+const MessageContainer = styled.div`
+    max-height: 100px; // 메시지 영역의 최대 높이 설정
+    overflow-y: auto; // 내용이 높이를 초과할 경우 세로 스크롤 활성화
+    padding: 0 10px; // 메시지 내용과 컨테이너의 경계 사이에 여백 추가
+`;
 
 const GridImg = styled.img`
     height: 100%;
@@ -81,16 +87,13 @@ const GridImg = styled.img`
 `
 
 const GirdText = styled.p`
-    color: ${props => props.$color};
+    color: ${(props) => props.$color};
     font-family: 'LINE-Bd', sans-serif;
-    font-size: ${props => props.$font_size || "1.5rem"};
-`
+    font-size: ${(props) => props.$font_size || "1.5rem"};
+`;
 
 export default function Letter({ $name, $part, $message, $src }) {
     const [isFlipped, setIsFlipped] = useState(false);
-
-    //useEffect를 사용하여 isFlipped 상태가 변경될 때마다 크기를 동적으로 조절하도록 설계
-
     return (
         <LetterForm onClick={() => setIsFlipped(!isFlipped)} isFlipped={isFlipped}>
             <LetterFlipper isFlipped={isFlipped}>
@@ -105,9 +108,9 @@ export default function Letter({ $name, $part, $message, $src }) {
                             <GirdText>{$name}</GirdText>
                             <p>{$part}</p>
                         </div>
-                        <div>
+                        <MessageContainer>
                             <p>{$message}</p>
-                        </div>
+                        </MessageContainer>
                     </TextForm>
                 </LetterBack>
             </LetterFlipper>
